@@ -26,11 +26,18 @@ export const singlePageIDSFetch = createAsyncThunk(
     }
 )
 
+const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Headers': ''
+}
+
 export const singlePageVideoFetch = createAsyncThunk(
     'singlePage/singlePageVideoFetch',
     async (id) => {
         const { request } = useHttp()
-        return await request(`https://videocdn.tv/api/short?imdb_id=${id}&api_token=ETGz3l3Gz3SJBynR2QWz3o5ctPAeT8AY`) 
+        console.log(12)
+        return await request(`https://videocdn.tv/api/short?imdb_id=${id}&api_token=ETGz3l3Gz3SJBynR2QWz3o5ctPAeT8AY`, headers) 
     }
 )
 

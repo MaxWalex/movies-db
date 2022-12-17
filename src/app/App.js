@@ -5,7 +5,6 @@ import PageMain from '../pages/pageMain/pageMain';
 import PageSingle from '../pages/pageSingle/PageSingle';
 import PageCategory from '../pages/pageCategory/PageCategory';
 import PageSearch from '../pages/pageSearch/PageSearch';
-import cors from 'cors';
 
 import './app.scss';
 

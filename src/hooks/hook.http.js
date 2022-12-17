@@ -1,6 +1,7 @@
 export const useHttp = () => {
     const request = async (url, headers = {'Content-Type': 'application/json'}, method = "GET", body = null) => {
         try {
+            console.log(headers)
             const response = await fetch(url, {method, body, headers, })
 
             if (!response.ok) {
