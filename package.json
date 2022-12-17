@@ -1,6 +1,7 @@
 {
   "name": "movies-db",
   "version": "0.1.0",
+  "proxy": "https://videocdn.tv/api",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.12.4",
