@@ -30,7 +30,10 @@ export const singlePageVideoFetch = createAsyncThunk(
     'singlePage/singlePageVideoFetch',
     async (id) => {
         const { request } = useHttp()
-        return await request(`https://videocdn.tv/api/short?imdb_id=${id}&api_token=ETGz3l3Gz3SJBynR2QWz3o5ctPAeT8AY`) 
+        return await request(`https://videocdn.tv/api/short?imdb_id=${id}&api_token=ETGz3l3Gz3SJBynR2QWz3o5ctPAeT8AY`, {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': "https://movies-db-alpha.vercel.app/"
+        }) 
     }
 )
 

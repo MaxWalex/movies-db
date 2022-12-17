@@ -106,9 +106,9 @@ function PageSingle() {
                     </div>
                 </div>
 
-                {/* <div className={`single_video ${centered}`}>
+                <div className={`single_video ${centered}`}>
                     {iframe}
-                </div> */}
+                </div>
             </div>
         </>
         }
