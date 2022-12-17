@@ -1,0 +1,25 @@
+.search_page {
+    padding-bottom: 60px;
+    h1 {
+        color: #000;
+        margin: 40px 0;
+        text-align: center;
+    }
+    &-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-row-gap: 35px;
+    }
+
+    .card + .card {
+        margin-left: 0 !important;
+    }
+    .pagination {
+        margin-left: 0 !important;
+        justify-content: center;
+    }
+}
+
+.search_page-content > p {
+    color: #000;
+}

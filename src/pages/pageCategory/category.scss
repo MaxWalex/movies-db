@@ -1,0 +1,130 @@
+.category {
+    h2 {
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 40px;
+        color: #000;
+        font-weight: bold;
+        margin: 50px 0;
+    }
+    .container {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+
+    .filters {
+        width: 400px;
+        height: 700px;
+        background-color: #000;
+        margin-right: 30px;
+    }
+    &_content {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 20px;
+    }
+}
+
+.category_content-notfound {
+    color: #000;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.category {
+    .card + .card {
+        margin-left: 0 !important;
+    }
+    .card .progress_bar .vote {
+        left: 12% !important;
+    }
+}
+
+
+.pagination_wrap {
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.aside {
+    width: 300px;
+    margin-right: 20px;
+    -webkit-box-shadow: 22px 17px 102px 18px rgba(0,0,0,0.37);
+    -moz-box-shadow: 22px 17px 102px 18px rgba(0,0,0,0.37);
+    box-shadow: 22px 17px 102px 18px rgba(0,0,0,0.37);
+    padding: 30px;
+    border-radius: 20px;
+
+    &_btn {
+        padding: 10px 20px;
+        background-color: #F2E35B;
+        color: #000;
+        font-weight: bold;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100px;
+        margin: 0 auto;
+        margin-top: 30px;
+    }
+
+    h4 {
+        color: #000;
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+    .sorting {
+        margin-bottom: 20px;
+
+        select {
+            padding: 10px;
+            border-radius: 10px;
+        }
+    }
+}
+
+.aside_wrap-item {
+    h5 {
+        color: #000;
+        font-size: 18px;
+    }
+}
+.aside_wrap-item_genre {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 20px;
+    span {
+        color: #000;
+        cursor: pointer;
+        border: 1px solid #000;
+        padding: 2px 5px;
+        border-radius: 10px;
+        transition: 0.4s;
+        &.active {
+            border-color: #F2E35B;
+            background-color: #F2E35B;
+            color: #000;
+        }
+    }
+}
+.aside_wrap-item_year {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    input {
+        width: 73%;
+        padding: 5px;
+        border: 1px solid rgba(0, 0, 0, 0.695);
+        border-radius: 10px;
+    }
+    input + input {
+        font-size: 16px;
+        width: 22%;
+    }
+}
