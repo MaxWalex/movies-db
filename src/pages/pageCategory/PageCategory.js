@@ -57,8 +57,6 @@ function PageCategory() {
     }
   }, [param])
 
-  
-
   return (
     <section className="category">
       <h2>{titlePage}</h2>
