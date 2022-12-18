@@ -5,11 +5,11 @@ import PageMain from '../pages/pageMain/pageMain';
 import PageSingle from '../pages/pageSingle/PageSingle';
 import PageCategory from '../pages/pageCategory/PageCategory';
 import PageSearch from '../pages/pageSearch/PageSearch';
+import PageCategorySort from '../pages/pageCategorySort/PageCategorySort';
 
 import './app.scss';
 
 function App() {
-
 
   return (
     <Router>
@@ -21,6 +21,7 @@ function App() {
           <Route path="/:type/:id" element={<PageSingle />} />
           <Route path="/search/:type/page/:number" element={<PageSearch />} />
           <Route path="/category/:type/:param/page/:number" element={<PageCategory />} />
+          <Route path="/genre/:type/sort/page/:number" element={<PageCategorySort />} />
         </Routes>
 
       </div>

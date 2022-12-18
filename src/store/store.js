@@ -5,6 +5,7 @@ import popFilms from '../components/popularFilms/popularFilmsSlice';
 import singlePage from '../pages/pageSingle/pageSingleSlice';
 import category from '../pages/pageCategory/pageCategorySlice';
 import search from '../pages/pageSearch/pageSearchSlice';
+import categorySort from '../pages/pageCategorySort/pageCategorySortSlice';
 
 const store = configureStore({
     reducer: {
@@ -12,7 +13,8 @@ const store = configureStore({
         popFilms,
         singlePage,
         category,
-        search
+        search,
+        categorySort
     },
     devTools: process.env.NODE_ENV !== 'production'
 })

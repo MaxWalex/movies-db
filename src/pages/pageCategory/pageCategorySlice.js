@@ -28,7 +28,7 @@ export const categoryGenresFetch = createAsyncThunk(
 export const categorySortFetch = createAsyncThunk(
     'category/categorySortFetch',
     async ({type, param, number, year, sort}) => {
-        let sortYear = year ? `year=${year}` : '';
+        let sortYear = year ? `primary_release_year=${year}` : '';
         let sortBy = sort ? `sort_by=${sort}` : '';
 
         let newArr = []

@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { singlePageFetch, singlePageVideoFetch, singlePageIDSFetch } from './pageSingleSlice';
+import { setGenres } from '../pageCategorySort/pageCategorySortSlice';
 import Loader from '../../components/loader/Loader';
 
 import ProgressBar from 'react-customizable-progressbar'
@@ -10,7 +11,7 @@ import './singlePage.scss';
 
 function PageSingle() {
     const dispatch = useDispatch()
-    const { id, type } = useParams()
+    const { id, type, param, number } = useParams()
 
     const { 
         singlePage, 
@@ -59,13 +60,17 @@ function PageSingle() {
                             <div className='vote'>{parseFloat(singlePage.vote_average).toFixed(1)}</div>
                         </ProgressBar>}
                     </div>
+
                     <div className='single_top-right'>
                         <h1>{singlePage.title ? singlePage.title : singlePage.name}</h1>
                         <div className='genres single_top-item'>
                             <span>Жанры:</span>
                             {
                                 singlePage.genres.map(genre => {
-                                    return <a href="#" key={genre.id}>{genre.name}</a>
+                                    return <Link
+                                            to={`/genre/${type}/sort/page/1`}
+                                            onClick={() => dispatch(setGenres({id: genre.id, name: genre.name}))}
+                                            key={genre.id}>{genre.name}</Link>
                                 })
                             }
                         </div>

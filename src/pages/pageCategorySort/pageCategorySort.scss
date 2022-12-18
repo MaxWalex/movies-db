@@ -1,0 +1,33 @@
+.category_sort-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+
+    .card + .card {
+        margin: 0 !important;
+    }
+}
+
+.category_sort {
+    .pagination {
+        margin: 40px auto;
+        justify-content: center;
+    }
+    h2 {
+        color: #000;
+        font-size: 24px;
+        margin: 30px 0;
+    }
+    &-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        select {
+            margin-left: 20px;
+            border: 1px solid #000;
+            border-radius: 10px;
+            padding: 10px 10px;
+            font-size: 16px;
+        }
+    }
+}

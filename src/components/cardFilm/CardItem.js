@@ -5,6 +5,7 @@ import './cardItem.scss';
 
 function CardItem({film, type = 'movie'}) {
 
+
   return (
     <div className='card'>
         <img src={`https://image.tmdb.org/t/p/w500${film.poster_path}`} />

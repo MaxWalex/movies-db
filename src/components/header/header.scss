@@ -15,10 +15,21 @@ nav {
             cursor: pointer;
         }
         li + li {
-            margin-left: 20px;
+            margin-left: 40px;
         }
-        li.has_children ul {
-            display: none;
+        li.has_children {
+            & > span {
+                font-size: 20px;
+                font-weight: bold;
+                display: block;
+            }
+            ul {
+                display: none;
+    
+                li + li {
+                    margin-top: 5px;
+                }
+            }
         }
     }
 }
