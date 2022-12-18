@@ -15,36 +15,41 @@ function PageSearch() {
 
     useEffect(() => {
         dispatch(pageSearchFetch({type, number}))
-        console.log({type, number})
     }, [])
 
-  return (
-    <section className='search_page'>
-        {pageSearchLoadingStatus !== 'fulfilled' ? <Loader /> : 
-            <>
-                <h1>По вашему запросу: <span>"{type}"</span>, было найдено: <span>"{pageSearch.total_results}"</span></h1>
-
-                <div className='container'>
-                    <div className='search_page-content'>
-                        {pageSearch.results.length === 0 ? <p>Хмм, такого у нас нет!</p> : pageSearch.results.map(film => {
-                            return <CardItem film={film} key={film.id} />
-                        })}
-                        
-                    </div>
-
-                    <Pagination
+    const contentSearch = () => {
+        return (
+            pageSearch.results.length === 0 ? <p>Хмм, такого у нас нет!</p> : <>
+                <div className='search_page-content'>
+                    {pageSearch.results.map(film => {
+                        return <CardItem film={film} key={film.id} />
+                    })}
+                </div>
+            
+                <Pagination
                         number={number}
                         pages={pageSearch.total_pages}
                         pathName={`/search/${type}`}
                         fetchPrev={pageSearchFetch({type, number: +number - 1})}
                         fetchNext={pageSearchFetch({type, number: +number + 1})}
                     />
-                </div>
             </>
-        }
-        
+        )
+    }
+    
+    const contentView = pageSearchLoadingStatus !== 'fulfilled' ? <Loader /> : <>
+        <h1>По вашему запросу: <span>"{type}"</span>, было найдено: <span>"{pageSearch.total_results}"</span></h1>
+
+        <div className='container'>
+            {contentSearch()}
+        </div>
+    </>;
+
+  return (
+    <section className='search_page'>
+        {contentView}        
     </section>
   )
 }
 
-export default PageSearch
+export default PageSearch;
