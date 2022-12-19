@@ -1,9 +1,15 @@
-import { useDispatch } from "react-redux"
+// import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux"
 import { categorySortFetch } from './pageCategorySlice';
+import { useParams } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
 
-function PageCategoryAside({setSort, setYear, categoryGenresLoadingStatus, genres, handleSelect, setIsSort, chooseGenres, number, year, sort, type}) {
+function PageCategoryAside({setSort, setYear, handleSelect, setIsSort, chooseGenres, year, sort}) {
+
     const dispatch = useDispatch()
+    const {type, number} = useParams()
+    
+    const {categoryGenresLoadingStatus, genres} = useSelector(state => state.category)
 
   return (
     <aside className="aside">

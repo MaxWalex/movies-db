@@ -122,11 +122,6 @@ function PageSingle() {
         </>
         }
 
-        
-        
-
-        
-
     </section>
   )
 }

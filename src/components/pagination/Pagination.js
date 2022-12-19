@@ -3,10 +3,8 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './pagintaion.scss';
 
-function Pagination({number, choosenGeners, fetchNext, fetchPrev, pathName, pages}) {
+function Pagination({number, fetchNext, fetchPrev, pathName, pages}) {
     const dispatch = useDispatch()
-
-    console.log(choosenGeners)
 
     const disabledPrev =  +number === 1 ? 'disable' : '';
     const disabledNext =  +number === pages ? 'disable' : '';
