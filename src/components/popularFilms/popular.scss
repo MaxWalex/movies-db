@@ -1,6 +1,6 @@
 .popular_content {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     margin-top: 40px;
     grid-gap: 20px;
     text-align: center;
@@ -19,6 +19,9 @@
     }
     .card .progress_bar .vote {
         left: 25%;
+    }
+    .card {
+        min-width: 240px;
     }
 }
 

@@ -9,6 +9,9 @@
 body {
     font-family: 'Inter', sans-serif;
     color: #fff;
+    &.lock {
+        overflow: hidden;
+    }
 }
 
 a {
