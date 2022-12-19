@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { singlePageFetch, singlePageVideoFetch, singlePageIDSFetch } from './pageSingleSlice';
 import { setGenres } from '../pageCategorySort/pageCategorySortSlice';
 import Loader from '../../components/loader/Loader';
+import PageSingleComments from './PageSingleComments';
+import PageSingleVideo from './PageSingleVideo';
 
 import ProgressBar from 'react-customizable-progressbar'
 
@@ -113,9 +115,9 @@ function PageSingle() {
                     </div>
                 </div>
 
-                <div className={`single_video ${centered}`}>
-                    {iframe}
-                </div>
+                <PageSingleVideo iframe={iframe} centered={centered} />
+
+                <PageSingleComments type={type} id={id} />
             </div>
         </>
         }

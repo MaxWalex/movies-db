@@ -7,7 +7,7 @@ const initialState = {
     singlePageIDSLoadingStatus: 'idle',
     singlePage: [],
     singlePageVideo: [],
-    singlePageIDS: [],
+    singlePageIDS: []
 }
 
 export const singlePageFetch = createAsyncThunk(
@@ -81,6 +81,6 @@ const mainSlice = createSlice({
     }
 })
 
-const {actions, reducer} = mainSlice;
+const { reducer } = mainSlice;
 
 export default reducer;
