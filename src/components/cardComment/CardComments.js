@@ -11,7 +11,6 @@ function CardComment({film, type}) {
             <div className='comment_item-info_top'>
                 <p>{film.author_details.username}</p>
                 <p>{film.author_details.name}</p>
-                {/* <p>{film.author_details.rating}</p> */}
             </div>
             <div className='comment_item-content'>
                 {film.content}

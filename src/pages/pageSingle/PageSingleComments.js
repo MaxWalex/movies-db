@@ -18,9 +18,9 @@ function PageSingleComments({id, type}) {
         <h2>Последнии комментарии</h2>
         <div className='single_comments'>
             {singlePageCommentsLoadingStatus !== 'fulfilled' ? <Loader /> :
-                comments.results.map(comment => {
+                comments.results.length !== 0 ? comments.results.map(comment => {
                     return <CardComment key={comment.id} film={comment} type={type} />
-                })
+                }) : <p>Комментариев пока никто не оставлял</p>
             }
         </div>
     </div>

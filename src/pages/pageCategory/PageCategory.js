@@ -5,6 +5,7 @@ import { categoryFetch, categoryGenresFetch, categorySortFetch } from './pageCat
 import CardItem from "../../components/cardFilm/CardItem";
 import Loader from "../../components/loader/Loader";
 import Pagination from "../../components/pagination/Pagination";
+import PageCategoryAside from "./pageCategoryAside";
 
 import './category.scss';
 
@@ -57,6 +58,11 @@ function PageCategory() {
     }
   }, [param])
 
+  // const content = categoryLoadingStatus !== 'fulfilled' ? <Loader /> :
+  // <>
+
+  // </>
+
   return (
     <section className="category">
       <h2>{titlePage}</h2>
@@ -65,7 +71,21 @@ function PageCategory() {
         {categoryLoadingStatus !== 'fulfilled' ? <Loader /> :
         
           <>
-            <aside className="aside">
+
+<PageCategoryAside 
+          setSort={setSort} 
+          setYear={setYear} 
+          categoryGenresLoadingStatus={categoryGenresLoadingStatus}
+          genres={genres}
+          handleSelect={handleSelect}
+          setIsSort={setIsSort}
+          chooseGenres={chooseGenres}
+          number={number}
+          year={year}
+          sort={sort}
+          type={type}
+        />
+            {/* <aside className="aside">
               <div className="aside_content sorting">
                 <h4>Сортировать</h4>
                 <div className="aside_wrap">
@@ -117,7 +137,7 @@ function PageCategory() {
                   setIsSort(true)
                 }}>Поиск</a>
               </div>
-            </aside>
+            </aside> */}
 
             <div className="category_content">
               
