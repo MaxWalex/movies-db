@@ -78,12 +78,14 @@ function PageSingle() {
                             <span>Год:</span>
                             {singlePage.release_date ? singlePage.release_date : singlePage.first_air_date}
                         </div>
-                        <div className='countries single_top-item'>
+
+                        {singlePage.production_countries && <div className='countries single_top-item'>
                             <span>Страна:</span>
                             {singlePage.production_countries.map(country => {
                                 return <span key={country.iso_3166_1}>{country.name}</span>
                             })}
-                        </div>
+                        </div>}
+
                         {singlePage.runtime && <div className='time single_top-item'>
                             <span>Время просмотра:</span>
                             {singlePage.runtime}м.

@@ -52,6 +52,10 @@ function PageCategorySort() {
             />
   </> : <p style={{color: '#000'}}>В текущей категории {type}, нет такого жанра</p>;
 
+  const select = arrayOfType.map(({value, name}) => {
+    return <option selected={value === type} key={value} value={value}>{name}</option>
+  })
+
   return (
     <section className="category_sort">
       <div className="container">
@@ -59,9 +63,7 @@ function PageCategorySort() {
         <div className="category_sort-top">
           <h2>Фильмы за жанром: {choosenGeners.name ? choosenGeners.name : 'Не выбран'}</h2>
           <select onChange={e => handleChangeTypeSelect(e.target.value)}>  
-            {arrayOfType.map(({value, name}) => {
-              return <option selected={value === type} key={value} value={value}>{name}</option>
-            })}
+            {select}
           </select>
         </div>
 
