@@ -80,14 +80,7 @@ function PageCategory() {
     </div>
   </>
 
-  return (
-    <section className="category">
-      <h2>{titlePage}</h2>
-      <div className="container" style={{justifyContent: categoryLoadingStatus !== 'fulfilled' ? 'center' : 'space-between'}}>
-        {content}
-      </div>
-
-      {categoryLoadingStatus === 'fulfilled' && <div className="container pagination_wrap">
+  const pagination = categoryLoadingStatus === 'fulfilled' && <div className="container pagination_wrap">
         <Pagination
           number={number}
           pages={category.total_pages}
@@ -99,7 +92,17 @@ function PageCategory() {
             categorySortFetch({type, param: chooseGenres, number: +number - 1, year, sort}) : 
             categoryFetch({type, param, number: +number - 1})}
         />
-      </div>}
+      </div>
+
+  return (
+    <section className="category">
+      <h2>{titlePage}</h2>
+      
+      <div className="container" style={{justifyContent: categoryLoadingStatus !== 'fulfilled' ? 'center' : 'space-between'}}>
+        {content}
+      </div>
+
+      {pagination}
       
 
     </section>

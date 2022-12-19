@@ -1,4 +1,4 @@
-// import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { categorySortFetch } from './pageCategorySlice';
 import { useParams } from "react-router-dom";
@@ -6,10 +6,34 @@ import Loader from "../../components/loader/Loader";
 
 function PageCategoryAside({setSort, setYear, handleSelect, setIsSort, chooseGenres, year, sort}) {
 
+    const [sortArray, setSortArray] = useState([
+                            {value: 'popularity.desc',name: 'Популярности (убывание)'},
+                            {value: 'popularity.asc',name: 'Популярности (возрастание)'},
+                            {value: 'vote_average.desc',name: 'Рейтингу (убывание)'},
+                            {value: 'vote_average.asc',name: 'Популярности (возрастание)'},
+                            {value: 'primary_release_date.desc',name: 'Дате выпуска (убывание)'},
+                            {value: 'primary_release_date.asc',name: 'Дате выпуска (возрастание)'},
+                            {value: 'title.asc',name: 'Названию (А-Я)'},
+                            {value: 'title.desc',name: 'Названию (Я-А)'},
+                        ])
+                        
     const dispatch = useDispatch()
     const {type, number} = useParams()
     
     const {categoryGenresLoadingStatus, genres} = useSelector(state => state.category)
+
+    const selectOptions = sortArray.map(({value, name}) => {
+                        return <option key={value} value={value}>{name}</option>
+                    });
+
+    const genresList = categoryGenresLoadingStatus !== 'fulfilled' ? <Loader /> :
+                        genres.genres.map(({id, name}) => {
+                        return <span 
+                                    key={id} 
+                                    id={id} 
+                                    onClick={(e) => handleSelect(e, id, name)}
+                                    >{name}</span>
+                        });
 
   return (
     <aside className="aside">
@@ -17,14 +41,7 @@ function PageCategoryAside({setSort, setYear, handleSelect, setIsSort, chooseGen
                 <h4>Сортировать</h4>
                 <div className="aside_wrap">
                   <select onChange={e => setSort(e.target.value)}>
-                    <option value="popularity.desc">Популярности (убывание)</option>
-                    <option value="popularity.asc">Популярности (возрастание)</option>
-                    <option value="vote_average.desc">Рейтингу (убывание)</option>
-                    <option value="vote_average.asc">Рейтингу (возрастание)</option>
-                    <option value="primary_release_date.desc">Дате выпуска (убывание)</option>
-                    <option value="primary_release_date.asc">Дате выпуска (возрастание)</option>
-                    <option value="title.asc">Названию (А-Я)</option>
-                    <option value="title.desc">Названию (Я-А)</option>
+                    {selectOptions}
                   </select>
                 </div>
               </div>
@@ -43,17 +60,7 @@ function PageCategoryAside({setSort, setYear, handleSelect, setIsSort, chooseGen
                   <div className="aside_wrap-item">
                     <h5>Жанр</h5>
                     <div className="aside_wrap-item_genre">
-
-                      {categoryGenresLoadingStatus !== 'fulfilled' ? <Loader /> :
-                        genres.genres.map(({id, name}) => {
-                          return <span 
-                                    key={id} 
-                                    id={id} 
-                                    onClick={(e) => handleSelect(e, id, name)}
-                                    >{name}</span>
-                        })
-                      }
-
+                      {genresList}
                     </div>
                   </div>
                 </div>
