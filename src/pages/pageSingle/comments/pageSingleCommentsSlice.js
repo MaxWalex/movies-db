@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { useHttp } from '../../hooks/hook.http';
+import { useHttp } from '../../../hooks/hook.http';
 
 const initialState = {
     singlePageCommentsLoadingStatus: 'idle',

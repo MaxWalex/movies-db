@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { singlePageCommentFetch } from '../pageSingle/pageSingleCommentsSlice';
-import Loader from '../../components/loader/Loader';
-import CardComment from '../../components/cardComment/CardComments';
+import { singlePageCommentFetch } from './pageSingleCommentsSlice';
+import Loader from '../../../components/loader/Loader';
+import CardComment from '../../../components/cardComment/CardComments';
 
 function PageSingleComments({id, type}) {
     const dispatch = useDispatch();

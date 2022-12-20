@@ -1,13 +1,17 @@
 import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { singlePageFetch, singlePageVideoFetch, singlePageIDSFetch } from './pageSingleSlice';
 import { setGenres } from '../pageCategorySort/pageCategorySortSlice';
-import Loader from '../../components/loader/Loader';
-import PageSingleComments from './PageSingleComments';
-import PageSingleVideo from './PageSingleVideo';
 
-import ProgressBar from 'react-customizable-progressbar'
+import PageSingleComments from './comments/PageSingleComments';
+import PageSingleVideo from './video/PageSingleVideo';
+import PageSingleSimilarFilms from './similarFilms/PageSingleSimilarFilms';
+import Loader from '../../components/loader/Loader';
+
+
+import ProgressBar from 'react-customizable-progressbar';
 
 import './singlePage.scss';
 
@@ -116,6 +120,8 @@ function PageSingle() {
                 </div>
 
                 <PageSingleVideo iframe={iframe} centered={centered} />
+
+                <PageSingleSimilarFilms type={type} id={id} />
 
                 <PageSingleComments type={type} id={id} />
             </div>

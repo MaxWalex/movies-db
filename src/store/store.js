@@ -6,7 +6,8 @@ import singlePage from '../pages/pageSingle/pageSingleSlice';
 import category from '../pages/pageCategory/pageCategorySlice';
 import search from '../pages/pageSearch/pageSearchSlice';
 import categorySort from '../pages/pageCategorySort/pageCategorySortSlice';
-import singlePageComment from '../pages/pageSingle/pageSingleCommentsSlice';
+import singlePageComment from '../pages/pageSingle/comments/pageSingleCommentsSlice';
+import similarSlice from '../pages/pageSingle/similarFilms/PageSingleSimilarFilmsSlice';
 
 const store = configureStore({
     reducer: {
@@ -16,7 +17,8 @@ const store = configureStore({
         category,
         search,
         categorySort,
-        singlePageComment
+        singlePageComment,
+        similarSlice
     },
     devTools: process.env.NODE_ENV !== 'production'
 })

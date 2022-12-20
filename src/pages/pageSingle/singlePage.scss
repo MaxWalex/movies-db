@@ -119,6 +119,20 @@
     }
 }
 
+.single_similar-block {
+    h2 {
+        margin: 40px 0;
+    }
+    h3 {
+        color: #fff;
+    }
+}
+
+.single_similar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
 .single_comments {
     background-color: rgba(41, 41, 41, 0.5);
     padding: 40px;
