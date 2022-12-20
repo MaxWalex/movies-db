@@ -9,7 +9,7 @@ function CardComment({film, type}) {
         <img src={user} />
         <div className='comment_item-info'>
             <div className='comment_item-info_top'>
-                <p>{film.author_details.username}</p>
+                <p><a href={film.url} target="_blank">{film.author_details.username}</a></p>
                 <p>{film.author_details.name}</p>
             </div>
             <div className='comment_item-content'>

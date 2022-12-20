@@ -10,7 +10,7 @@ export const singlePageSimilarFetch = createAsyncThunk(
     'singlePage/singlePageSimilarFetch',
     async ({type, id}) => {
         const { request } = useHttp()
-        return await request(`https://api.themoviedb.org/3/${type}/${id}/similar?api_key=83b24db968cf6c546c5d8ec3e8254665&language=en-US`)
+        return await request(`https://api.themoviedb.org/3/${type}/${id}/similar?api_key=83b24db968cf6c546c5d8ec3e8254665&language=ru-RU`)
     }
 )
 
