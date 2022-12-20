@@ -36,6 +36,8 @@ export const categorySortFetch = createAsyncThunk(
             newArr.push(item.id)
         })
 
+        console.log(sortBy)
+
         let genres = newArr.join(',')
         let sortGenres = genres ? `with_genres=${genres}` : '';
 

@@ -29,6 +29,7 @@ form {
         font-size: 16px;
     }
     button {
+        transition: 0.4s;
         height: 50px;   
         width: 10%;
         border-radius: 10px;
@@ -36,5 +37,8 @@ form {
         border: none;
         font-weight: bold;
         cursor: pointer;
+        &:hover {
+            background-color: #F2E35B;
+        }
     }
 }

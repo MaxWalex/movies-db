@@ -16,7 +16,7 @@ function Search() {
       <p>Миллионы фильмов, сериалов. Исследуйте сейчас.</p>
 
       <form onSubmit={() => handleSearch()}>
-        <input placeholder='Найди подходящий фильм, сериал...' value={text} onChange={e => setText(e.target.value)} />
+        <input required placeholder='Найди подходящий фильм, сериал...' value={text} onChange={e => setText(e.target.value)} />
         <button>Поиск</button>
       </form>
     </section>  

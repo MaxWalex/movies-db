@@ -17,7 +17,9 @@
     }
     img {
         width: 100%;
-        height: auto;
+        height: 390px;
+        border-radius: 20px;
+        object-fit: cover;
     }
     svg path {
         transition: 0.4s;
@@ -30,14 +32,10 @@
         top: 10px;
         left: 10px;
         z-index: 999;
-    }
-    .progress_bar svg {
-        width: 50px;
-        height: 50px;
-    }
-    .progress_bar .vote {
-        top: 25px;
-        left: 15%;
+        svg {
+            width: 50px;
+            height: 50px;
+        }
     }
 }
 

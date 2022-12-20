@@ -18,10 +18,17 @@
         width: 50px !important;
     }
     .card .progress_bar .vote {
-        left: 25%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
     }
-    .card {
-        min-width: 240px;
+    img {
+        height: 390px;
+        border-radius: 20px;
+    }
+    .card_play img {
+        width: 50px;
+        height: 50px;
     }
 }
 
@@ -33,17 +40,3 @@
 }
 
 
-
-.card {
-    min-width: 250px;
-    img {
-        height: 390px;
-        border-radius: 20px;
-    }
-}
-
-
-.card_play img {
-    width: 50px;
-    height: 50px;
-}
