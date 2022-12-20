@@ -80,7 +80,7 @@ function PageCategory() {
     </div>
   </>
 
-  const pagination = categoryLoadingStatus === 'fulfilled' && <div className="container pagination_wrap">
+  const pagination = categoryLoadingStatus === 'fulfilled' && category.results.length !== 0 ? <div className="container pagination_wrap">
         <Pagination
           number={number}
           pages={category.total_pages}
@@ -92,7 +92,7 @@ function PageCategory() {
             categorySortFetch({type, param: chooseGenres, number: +number - 1, year, sort}) : 
             categoryFetch({type, param, number: +number - 1})}
         />
-      </div>
+      </div> : '';
 
   return (
     <section className="category">

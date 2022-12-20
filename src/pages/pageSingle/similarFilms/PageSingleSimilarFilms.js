@@ -22,7 +22,6 @@ function PageSingleSimilarFilms({type, id}) {
             {singlePageSimilarsLoadingStatus !== 'fulfilled' ? <Loader /> :
                 similars.results.length !== 0 ? similars.results.map((films, index) => {
                   if (index <= 3) {
-                    console.log(index)
                     return <CardFilm key={films.id} film={films} type={type} />
                   } else return
                 }) : <p>Нет похожих фильмов</p>

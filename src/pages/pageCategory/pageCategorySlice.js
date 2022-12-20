@@ -28,15 +28,13 @@ export const categoryGenresFetch = createAsyncThunk(
 export const categorySortFetch = createAsyncThunk(
     'category/categorySortFetch',
     async ({type, param, number, year, sort}) => {
-        let sortYear = year ? `primary_release_year=${year}` : '';
+        let sortYear = year ? type === 'movie' ? `primary_release_year=${year}` : `first_air_date_year=${year}` : '';
         let sortBy = sort ? `sort_by=${sort}` : '';
 
         let newArr = []
         param.forEach(item => {
             newArr.push(item.id)
         })
-
-        console.log(sortBy)
 
         let genres = newArr.join(',')
         let sortGenres = genres ? `with_genres=${genres}` : '';
