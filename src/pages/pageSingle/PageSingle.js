@@ -31,7 +31,7 @@ function PageSingle() {
     useEffect(() => {
         dispatch(singlePageFetch({id, type})) 
         dispatch(singlePageIDSFetch({id, type}))
-    }, [])
+    }, [id])
 
     useEffect(() => {
         if (singlePageIDSLoadingStatus === 'fulfilled') {    

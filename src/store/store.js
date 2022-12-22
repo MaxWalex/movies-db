@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import main from '../reduxSlice/main';
+import user from '../reduxSlice/userSlice';
 import popFilms from '../components/popularFilms/popularFilmsSlice';
 import singlePage from '../pages/pageSingle/pageSingleSlice';
 import category from '../pages/pageCategory/pageCategorySlice';
@@ -12,6 +13,7 @@ import similarSlice from '../pages/pageSingle/similarFilms/PageSingleSimilarFilm
 const store = configureStore({
     reducer: {
         main,
+        user,
         popFilms,
         singlePage,
         category,

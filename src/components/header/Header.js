@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate, useHref } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleSearch } from '../../reduxSlice/main';
+import { useAuth } from '../../hooks/useAuth';
+import userIMG from '../../images/user-svgrepo-com.svg';
 
 import SearchButton from './SearchButton';
 import SearchBlock from './SearchBlock';
@@ -12,6 +14,8 @@ import './header.scss'
 
 function Header() {
     const [text, setText] = useState('')
+
+    const { loggedIn } = useAuth()
 
     const href = useHref()
     const dispatch = useDispatch()
@@ -37,9 +41,14 @@ function Header() {
 
             <Menu />
 
-            <SearchButton showSearch={showSearch} dispatch={dispatch} toggleSearch={toggleSearch} />
-
             <SearchBlock clazz={clazz} handleSearch={handleSearch} setText={setText} text={text} />
+
+            <div className='header_right'>
+                <SearchButton showSearch={showSearch} dispatch={dispatch} toggleSearch={toggleSearch} />
+                {loggedIn ?  <Link to="/profile"><img src={userIMG} />Мой кабинет</Link> :
+                    <Link to="/login"><img src={userIMG} />Войти</Link>
+                }
+            </div>
         </div>
     </header>
   )

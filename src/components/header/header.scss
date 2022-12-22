@@ -6,6 +6,26 @@ header {
     }
 }
 
+.header_right {
+    display: flex;
+    align-items: center;
+
+    svg,
+    img {
+        width: 30px;
+        height: 30px;
+    }
+
+    a {
+        margin-left: 20px;
+        display: flex;
+        align-items: center;
+        img {
+            margin-right: 10px;
+        }
+    } 
+}
+
 nav {
     z-index: 99999;
     ul {
