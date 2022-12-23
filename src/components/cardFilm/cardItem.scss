@@ -5,6 +5,15 @@
 
 
 .card {
+    .fav {
+        z-index: 10;
+        position: absolute;
+        right: 10px;
+        top: 15px;
+        width: 36px;
+        height: 36px;
+        object-fit: cover;
+    }
     cursor: pointer;
     max-width: 300px;
     width: 100%;    

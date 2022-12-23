@@ -1,14 +1,12 @@
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import { setUser } from "../../../reduxSlice/userSlice";
 import { toast } from 'react-toastify';
 import { setAuth } from "../../../reduxSlice/userSlice";
 import { useNavigate } from "react-router-dom";
-// import { setDoc, doc, serverTimestamp } from 'firebase/firestore'
-// import { db } from '../../../firebase/firebase'
+import { serverTimestamp, doc, setDoc } from "firebase/firestore"; 
+import { db } from '../../../firebase/firebase'
 
 import Form from "../form/Form";
-import { Navigate } from "react-router-dom";
 
 function SignUp() {
   const dispatch = useDispatch()
@@ -23,14 +21,14 @@ function SignUp() {
     
       const user = userCredentinal.user;
 
-      dispatch(setUser(user.email))
-
       navigate('/')
       toast.success('Успешно зарегистрированы!')
 
-      dispatch(setAuth({loggedIn: true, checkingStatus: true}))
+      dispatch(setAuth({loggedIn: true, checkingStatus: true, userID: user.uid, email: user.email}))
 
-      // await setDoc(doc(db, 'people', user.uid), {email, password})
+      const formData = {email, password, timestamp: serverTimestamp()}
+
+      await setDoc(doc(db, `users`, user.uid), formData);
 
     } catch(err) {
       if (err.code === 'weak-password') {

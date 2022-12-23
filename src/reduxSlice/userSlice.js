@@ -4,9 +4,8 @@ const initialState = {
     loggedIn: false,
     checkingStatus: true,
     email: null,
+    userID: null,
     favFilms: []
-    // token: null,
-    // id: null,
 }
 
 const userSLice = createSlice({
@@ -16,16 +15,18 @@ const userSLice = createSlice({
         setAuth: (state, action) => {
             state.loggedIn = action.payload.loggedIn;
             state.checkingStatus = action.payload.status;
+            state.userID = action.payload.id;
+            state.email = action.payload.email;
         },
-        setUser: (state, action) => {
-            state.email = action.payload;
-            // state.token = action.payload.token;
-            // state.id = action.payload.id;
+        setFavFilms: (state, action) => {
+            state.favFilms = action.payload
         },
         removeUser: (state) => {
+            state.loggedIn = false;
+            state.checkingStatus = true;
             state.email = null;
-            // state.token = null;
-            // state.id = null;
+            state.userID = null;
+            state.favFilms = [];
         }
     }
 })
@@ -34,4 +35,4 @@ const {actions, reducer} = userSLice;
 
 export default reducer;
 
-export const {setUser, removeUser, setAuth} = actions;
+export const {removeUser, setAuth, setFavFilms} = actions;

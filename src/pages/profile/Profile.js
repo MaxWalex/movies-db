@@ -1,21 +1,29 @@
+// import { useEffect, useId, useState, useCallback } from 'react';
 import { useAuth } from '../../hooks/useAuth';
-import Loader from '../../components/loader/Loader';
 import { useSelector } from 'react-redux';
 import { getAuth } from 'firebase/auth';
+import {
+  deleteDoc,
+  doc
+} from 'firebase/firestore'
+import { db } from '../../firebase/firebase'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
-import { setAuth } from '../../reduxSlice/userSlice';
+import { removeUser, setFavFilms } from '../../reduxSlice/userSlice';
+
+import Loader from '../../components/loader/Loader';
+import FavFilm from './FavFilm';
 
 import './profile.scss'
 
 function Profile() {
+  const auth = getAuth()
   const { loggedIn } = useAuth()
   const dispatch = useDispatch()
 
-  const { email } = useSelector(state => state.user)
+  const { email, favFilms } = useSelector(state => state.user)
 
-  const auth = getAuth()
   const navigate = useNavigate()
 
   const logOut = (e) => {
@@ -27,8 +35,18 @@ function Profile() {
 
     toast.success('Успешно вышли из аккаунта!')
 
-    dispatch(setAuth({loggedIn: false, checkingStatus: true}))
-}
+    dispatch(removeUser())
+  }
+
+  const handleRemove = async (userID, filmTitle) => {
+    await deleteDoc(doc(db, "listings", userID));
+  
+    let newListings = favFilms.filter(film => film.id !== userID)
+  
+    dispatch(setFavFilms(newListings))
+  
+    toast.success(`Фильм "${filmTitle}" успешно удален!`)
+  } 
 
   return (
     <section className='profile'>
@@ -43,8 +61,16 @@ function Profile() {
           </div>
           
           <div className='profile_fav-films'>
-            <h2>Список желаний</h2>
-            <div className='profile_fav-films_list'>Список пуст!</div>
+            <h2>Список понравившихся</h2>
+            <div className='profile_fav-films_list'>
+              {favFilms.length === 0 ? 'Список пуст!' : favFilms.map(film => {
+                return <FavFilm 
+                  handleFavouriteRemove={handleRemove} 
+                  uid={film.id}
+                  key={film.id}
+                  film={film.data} />
+              })}
+            </div>
           </div>
         </>
         }

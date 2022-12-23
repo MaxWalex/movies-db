@@ -1,7 +1,7 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { setUser } from "../../../reduxSlice/userSlice";
+import { setUser, setAuth } from "../../../reduxSlice/userSlice";
 import { toast } from 'react-toastify';
 
 import Form from "../form/Form";
@@ -12,6 +12,8 @@ function Login() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+    const { loggedIn, checkingStatus, favFilms } = useSelector(state => state.user)
+
     const handleLogin = async (email, password) => {
 
         try {
@@ -19,8 +21,9 @@ function Login() {
           const userCredential = await signInWithEmailAndPassword(auth, email, password)
     
           if (userCredential.user) {
+            let user = userCredential.user;
             navigate('/')
-            dispatch(setUser(userCredential.user.email))
+            dispatch(setAuth({loggedIn: true, checkingStatus: true, id: user.uid, email}))
             toast.success('Успешная авторизация!')
           }
     
