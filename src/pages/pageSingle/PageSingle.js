@@ -1,23 +1,20 @@
 import { useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { singlePageFetch, singlePageVideoFetch, singlePageIDSFetch } from './pageSingleSlice';
-import { setGenres } from '../pageCategorySort/pageCategorySortSlice';
 
 import PageSingleComments from './comments/PageSingleComments';
 import PageSingleVideo from './video/PageSingleVideo';
 import PageSingleSimilarFilms from './similarFilms/PageSingleSimilarFilms';
 import Loader from '../../components/loader/Loader';
-
-
-import ProgressBar from 'react-customizable-progressbar';
+import PageSingleTop from './topContent/PageSingleTop';
 
 import './singlePage.scss';
 
 function PageSingle() {
     const dispatch = useDispatch()
-    const { id, type, param, number } = useParams()
+    const { id, type } = useParams()
 
     const { 
         singlePage, 
@@ -53,77 +50,17 @@ function PageSingle() {
             <div className='single_page-img' style={{
                 backgroundImage: `url(https://image.tmdb.org/t/p/original${singlePage.backdrop_path})`
             }}></div>
+
             <div className='container'>
-                <div className='single_top'>
-                    <div className='single_top-left'>
-                        <img src={`https://image.tmdb.org/t/p/w500${singlePage.poster_path}`} />
-                        {singlePage.vote_average !== 0 && <ProgressBar
-                            progress={singlePage.vote_average}
-                            steps={10}
-                            radius={100}
-                            className='progress_bar'
-                        >
-                            <div className='vote'>{parseFloat(singlePage.vote_average).toFixed(1)}</div>
-                        </ProgressBar>}
-                    </div>
 
-                    <div className='single_top-right'>
-                        <h1>{singlePage.title ? singlePage.title : singlePage.name}</h1>
-                        <div className='genres single_top-item'>
-                            <span>Жанры:</span>
-                            {
-                                singlePage.genres.map(genre => {
-                                    return <Link
-                                            to={`/genre/${type}/sort/page/1`}
-                                            onClick={() => dispatch(setGenres({id: genre.id, name: genre.name}))}
-                                            key={genre.id}>{genre.name}</Link>
-                                })
-                            }
-                        </div>
-                        <div className='date single_top-item'>
-                            <span>Год:</span>
-                            {singlePage.release_date ? singlePage.release_date : singlePage.first_air_date}
-                        </div>
-
-                        {singlePage.production_countries && <div className='countries single_top-item'>
-                            <span>Страна:</span>
-                            {singlePage.production_countries.map(country => {
-                                return <span key={country.iso_3166_1}>{country.name}</span>
-                            })}
-                        </div>}
-
-                        {singlePage.runtime && <div className='time single_top-item'>
-                            <span>Время просмотра:</span>
-                            {singlePage.runtime}м.
-                        </div>}
-                        {singlePage.number_of_seasons && <div className='seasons single_top-item'>
-                            <span>К-во сезонов:</span>
-                            {singlePage.number_of_seasons}
-                        </div>}
-                        {singlePage.number_of_episodes && <div className='series single_top-item'>
-                            <span>К-во серий:</span>
-                            {singlePage.number_of_episodes}
-                        </div>}
-                        {singlePage.tagline && <div className='slogan single_top-item'>
-                            <span>Слоган:</span>
-                            {singlePage.tagline}
-                        </div>}
-                        {singlePage.overview.length !== 0 && <div className='description single_top-item'>
-                            <span>Описание:</span>
-                            {singlePage.overview}
-                        </div>}
-                        {!singlePage.budget || singlePage.budget !== 0 && <div className='budget single_top-item'>
-                            <span>Бюджет:</span>
-                            ${singlePage.budget}
-                        </div>}
-                    </div>
-                </div>
+                <PageSingleTop type={type} pageInfo={singlePage} dispatch={dispatch} />
 
                 <PageSingleVideo iframe={iframe} centered={centered} />
 
                 <PageSingleSimilarFilms type={type} id={id} />
 
                 <PageSingleComments type={type} id={id} />
+
             </div>
         </>
         }

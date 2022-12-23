@@ -1,16 +1,35 @@
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { toast } from 'react-toastify';
-import { setAuth } from "../../../reduxSlice/userSlice";
+import { setAuth, setFavFilms } from "../../../reduxSlice/userSlice";
 import { useNavigate } from "react-router-dom";
-import { serverTimestamp, doc, setDoc } from "firebase/firestore"; 
-import { db } from '../../../firebase/firebase'
+import { getDocs, collection } from "firebase/firestore"; 
+import { db } from '../../../firebase/firebase';
 
-import Form from "../form/Form";
+import FormCustom from "../form/FormCustom";
 
 function SignUp() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  const fetchUserListings = async (userID) => {
+    const listingsRef = collection(db, 'listings')
+
+    const querySnap = await getDocs(listingsRef)
+
+    let listings = []
+
+    querySnap.forEach((doc) => {
+        return listings.push({
+            id: doc.id,
+            data: doc.data(),
+        })
+    })
+
+    let newListings = listings.filter(film => film.data.userRef === userID)
+
+    dispatch(setFavFilms(newListings))
+  }  
 
   const handleRegister = async (email, password) => {
    
@@ -20,15 +39,14 @@ function SignUp() {
       const userCredentinal = await createUserWithEmailAndPassword(auth, email, password)
     
       const user = userCredentinal.user;
+      dispatch(setAuth({loggedIn: true, checkingStatus: true, id: user.uid, email: user.email}))
+      fetchUserListings(user.uid)
+      // const formData = {email, password, timestamp: serverTimestamp()}
+
+      // await setDoc(doc(db, `users`, user.uid), formData);
 
       navigate('/')
       toast.success('Успешно зарегистрированы!')
-
-      dispatch(setAuth({loggedIn: true, checkingStatus: true, userID: user.uid, email: user.email}))
-
-      const formData = {email, password, timestamp: serverTimestamp()}
-
-      await setDoc(doc(db, `users`, user.uid), formData);
 
     } catch(err) {
       if (err.code === 'weak-password') {
@@ -44,7 +62,7 @@ function SignUp() {
   }
 
   return (
-    <Form title={'Регистрация'} handleClick={handleRegister} />
+    <FormCustom title={'Регистрация'} handleClick={handleRegister} />
   )
 }
 

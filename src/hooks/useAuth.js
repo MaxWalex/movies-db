@@ -3,15 +3,15 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import {
   collection,
   getDocs
-} from 'firebase/firestore'
-import { db } from '../firebase/firebase'
+} from 'firebase/firestore';
+import { db } from '../firebase/firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAuth, setFavFilms } from '../reduxSlice/userSlice';
 
 export const useAuth = () => {
     const dispatch = useDispatch()
 
-    const { loggedIn, checkingStatus, favFilms } = useSelector(state => state.user)
+    const { loggedIn, checkingStatus, favFilms, userID } = useSelector(state => state.user)
 
     useEffect(() => {
         const auth = getAuth()
@@ -21,7 +21,7 @@ export const useAuth = () => {
               dispatch(setAuth({loggedIn: true, checkingStatus: true, id: user.uid, email: user.email}))
               fetchUserListings(user.uid)
             } else {
-              dispatch(setAuth({checkingStatus: false}))
+              dispatch(setAuth({loggedIn: false, checkingStatus: false}))
             }
         })
 

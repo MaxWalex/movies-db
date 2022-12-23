@@ -2,6 +2,7 @@ import { useEffect, useState, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { categoryFetch, categoryGenresFetch, categorySortFetch } from './pageCategorySlice';
+
 import CardItem from "../../components/cardFilm/CardItem";
 import Loader from "../../components/loader/Loader";
 import Pagination from "../../components/pagination/Pagination";

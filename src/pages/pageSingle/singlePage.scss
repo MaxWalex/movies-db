@@ -1,6 +1,9 @@
 .single_page {
     position: relative;
     padding-top: 60px;
+    .vote {
+        font-size: 22px !important;
+    }
 }
 
 .single_page-img {
@@ -23,6 +26,17 @@
 
 .single_top-left {
     position: relative;
+    .fav {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        top: -30px;
+        right: -30px;
+        cursor: pointer;
+        path {
+            fill: #F2E35B;
+        }
+    }
 }
 
 .single_top-left img {
@@ -49,9 +63,11 @@
 }
 .single_top-right {
     margin-left: 60px;
+    position: relative;
 
     h1 {
         color: #F2E35B;
+        padding-right: 60px;
     }
 }
 

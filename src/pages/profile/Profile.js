@@ -1,12 +1,11 @@
-// import { useEffect, useId, useState, useCallback } from 'react';
-import { useAuth } from '../../hooks/useAuth';
 import { useSelector } from 'react-redux';
+import { useAuth } from '../../hooks/useAuth';
 import { getAuth } from 'firebase/auth';
 import {
   deleteDoc,
   doc
-} from 'firebase/firestore'
-import { db } from '../../firebase/firebase'
+} from 'firebase/firestore';
+import { db } from '../../firebase/firebase';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
@@ -19,10 +18,11 @@ import './profile.scss'
 
 function Profile() {
   const auth = getAuth()
-  const { loggedIn } = useAuth()
+  const { favFilms } = useAuth()
+
   const dispatch = useDispatch()
 
-  const { email, favFilms } = useSelector(state => state.user)
+  const { email, loggedIn } = useSelector(state => state.user)
 
   const navigate = useNavigate()
 
@@ -31,11 +31,11 @@ function Profile() {
 
     auth.signOut()
 
+    dispatch(removeUser())
+
     navigate('/')
 
     toast.success('Успешно вышли из аккаунта!')
-
-    dispatch(removeUser())
   }
 
   const handleRemove = async (userID, filmTitle) => {
@@ -53,7 +53,7 @@ function Profile() {
       <div className='container'>
         {!loggedIn ? <Loader /> : <>
           <div className='profile_inner'>
-            <h1>Профиль</h1>  
+            <h1>Профиль</h1>
             <div className='profile_info'>
               <p>Почта: {email}</p>
               <button onClick={e => logOut(e)}>Выйти из аккаунта</button>
@@ -64,7 +64,7 @@ function Profile() {
             <h2>Список понравившихся</h2>
             <div className='profile_fav-films_list'>
               {favFilms.length === 0 ? 'Список пуст!' : favFilms.map(film => {
-                return <FavFilm 
+                return <FavFilm
                   handleFavouriteRemove={handleRemove} 
                   uid={film.id}
                   key={film.id}
