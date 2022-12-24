@@ -52,7 +52,7 @@ function PageCategorySort() {
               fetchNext={genreSortFetch({type, param: choosenGeners.id, number: +number + 1})}
               fetchPrev={genreSortFetch({type, param: choosenGeners.id, number: +number - 1})}
             />
-  </> : <p style={{color: '#000'}}>В текущей категории {type}, нет такого жанра</p>;
+  </> : <p>В текущей категории {type}, нет такого жанра</p>;
 
   const select = arrayOfType.map(({value, name}) => {
     return <option selected={value === type} key={value} value={value}>{name}</option>
