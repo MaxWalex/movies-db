@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { singlePageFetch, singlePageVideoFetch, singlePageIDSFetch } from './pageSingleSlice';
@@ -42,6 +42,7 @@ function PageSingle() {
                     singlePageVideo.data[0] ? <iframe src={singlePageVideo.data[0].iframe_src} rameborder="0" allowFullScreen></iframe> : 
                     <p>Видео еще не добавлено в базу</p>;
 
+    
   return (
     <section className='single_page' style={{textAlign: singlePageLoadingStatus !== 'fulfilled' ? 'center' : 'left'}}>
 
@@ -54,11 +55,8 @@ function PageSingle() {
             <div className='container'>
 
                 <PageSingleTop type={type} pageInfo={singlePage} dispatch={dispatch} />
-
                 <PageSingleVideo iframe={iframe} centered={centered} />
-
                 <PageSingleSimilarFilms type={type} id={id} />
-
                 <PageSingleComments type={type} id={id} />
 
             </div>

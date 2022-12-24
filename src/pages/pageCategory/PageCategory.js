@@ -9,6 +9,10 @@ import Pagination from "../../components/pagination/Pagination";
 import PageCategoryAside from "./pageCategoryAside";
 
 import './category.scss';
+import { doc } from "firebase/firestore";
+
+import imgBg1 from '../../images/cat-bg1.jpg';
+import imgBg2 from '../../images/cat-bg2.jpg';
 
 function PageCategory() {
   const dispatch = useDispatch()
@@ -29,6 +33,14 @@ function PageCategory() {
     setYear('')
     setIsSort(false)
   }, [type, param])
+
+  const handleReset = () => {
+    setSort('popularity.desc')
+    setChooseGenres([])
+    setYear('')
+    setIsSort(false)
+    dispatch(categoryFetch({type, param, number}))
+  }
 
   const handleSelect = (e, id, name) => {
     if (e.target.classList.contains('active')) {
@@ -69,6 +81,7 @@ function PageCategory() {
       setYear={setYear}
       handleSelect={handleSelect}
       setIsSort={setIsSort}
+      handleReset={handleReset}
     />
 
     <div className="category_content">
@@ -96,8 +109,10 @@ function PageCategory() {
       </div> : '';
 
   return (
-    <section className="category">
-      <h2>{titlePage}</h2>
+    <section className="category" style={{
+      backgroundImage: `url(${imgBg2})`
+    }}>
+      {/* <h2>{titlePage}</h2> */}
       
       <div className="container" style={{justifyContent: categoryLoadingStatus !== 'fulfilled' ? 'center' : 'space-between'}}>
         {content}

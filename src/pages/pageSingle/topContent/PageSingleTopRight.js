@@ -56,12 +56,7 @@ function PageSingleTopRight({pageInfo, dispatch, type}) {
                 <span>Описание:</span>
                 {pageInfo.overview}
             </div>}
-
-            {!pageInfo.budget || pageInfo.budget !== 0 && <div className='budget single_top-item'>
-                <span>Бюджет:</span>
-                ${pageInfo.budget}
-            </div>}
-        </div>
+    </div>
   )
 }
 

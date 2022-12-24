@@ -6,6 +6,8 @@ import Loader from '../../components/loader/Loader';
 import CardItem from '../../components/cardFilm/CardItem';
 import Pagination from '../../components/pagination/Pagination';
 
+import bgImg from '../../images/bg-search.jpg';
+
 import './pageSearch.scss';
 
 function PageSearch() {
@@ -16,13 +18,18 @@ function PageSearch() {
     useEffect(() => {
         dispatch(pageSearchFetch({type, number}))
     }, [])
-
+   
     const contentSearch = () => {
+        
         return (
             pageSearch.results.length === 0 ? <p>Хмм, такого у нас нет!</p> : <>
                 <div className='search_page-content'>
                     {pageSearch.results.map(film => {
-                        return <CardItem film={film} key={film.id} />
+                        if (film.media_type !== 'person') {
+                            return <CardItem film={film} key={film.id} /> 
+                        } else {
+                            return
+                        }
                     })}
                 </div>
             
@@ -38,6 +45,7 @@ function PageSearch() {
     }
     
     const contentView = pageSearchLoadingStatus !== 'fulfilled' ? <Loader /> : <>
+     
         <h1>По вашему запросу: <span>"{type}"</span>, было найдено: <span>"{pageSearch.total_results}"</span></h1>
 
         <div className='container'>
@@ -46,7 +54,9 @@ function PageSearch() {
     </>;
 
   return (
-    <section className='search_page'>
+    <section className='search_page' style={{
+        backgroundImage: `url(${bgImg})`
+      }}>
         {contentView}        
     </section>
   )

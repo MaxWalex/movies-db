@@ -1,8 +1,10 @@
 .search_page {
     padding-bottom: 60px;
+    background-attachment: fixed;
+    min-height: 100vh;
     h1 {
-        color: #000;
-        margin: 40px 0;
+        color: #fff;
+        padding: 40px 0;
         text-align: center;
     }
     &-content {
@@ -11,6 +13,9 @@
         grid-row-gap: 35px;
     }
 
+    .card h3 {
+        color: #fff;
+    }
     .card + .card {
         margin-left: 0 !important;
     }

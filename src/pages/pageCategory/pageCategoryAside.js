@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { categorySortFetch } from './pageCategorySlice';
 import { useParams } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
 
-function PageCategoryAside({setSort, setYear, handleSelect, setIsSort, chooseGenres, year, sort}) {
+function PageCategoryAside({setSort, setYear, handleSelect, setIsSort, chooseGenres, year, sort, handleReset}) {
+  const genresRef = useRef();
 
     const [sortArray, setSortArray] = useState([
                             {value: 'popularity.desc',name: 'Популярности (убывание)'},
@@ -35,6 +36,11 @@ function PageCategoryAside({setSort, setYear, handleSelect, setIsSort, chooseGen
                                     >{name}</span>
                         });
 
+  function handleInput(input) {
+    let value = (input.value-input.min)/(input.max-input.min)*100
+    // input.style.background = '#292929'
+  }
+
   return (
     <aside className="aside">
               <div className="aside_content sorting">
@@ -52,24 +58,37 @@ function PageCategoryAside({setSort, setYear, handleSelect, setIsSort, chooseGen
                   <div className="aside_wrap-item">
                     <h5>Год выпуска</h5>
                     <div className="aside_wrap-item_year">
-                      <input type="range" min="1900" max="2022" value={year} onChange={e => setYear(e.target.value)} />
+                      <input 
+                        type="range" 
+                        min="1900" 
+                        max="2022" 
+                        value={year} 
+                        onChange={e => setYear(e.target.value)} 
+                        onInput={e => handleInput(e.target)} 
+                      />
                       <input placeholder="Год" value={year} onChange={e => setYear(e.target.value)} />  
                     </div>
                   </div>
 
                   <div className="aside_wrap-item">
                     <h5>Жанр</h5>
-                    <div className="aside_wrap-item_genre">
+                    <div className="aside_wrap-item_genre" ref={genresRef}>
                       {genresList}
                     </div>
                   </div>
                 </div>
 
-                <a href="#" className={`aside_btn`} onClick={e => {
+                <a href="#" className="aside_btn" onClick={e => {
                   e.preventDefault()
                   dispatch(categorySortFetch({type, param: chooseGenres, number, year, sort}))
                   setIsSort(true)
                 }}>Поиск</a>
+
+                <a href="#" className="aside_btn" onClick={e => {
+                  e.preventDefault()
+                  handleReset()
+                  genresRef.current.querySelectorAll('span').forEach(e => e.classList.remove('active'))
+                }}>Cбросить фильтр</a>
               </div>
             </aside>
   )

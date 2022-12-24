@@ -11,6 +11,9 @@ import PageSearch from '../pages/pageSearch/PageSearch';
 import PageCategorySort from '../pages/pageCategorySort/PageCategorySort';
 import Profile from '../pages/profile/Profile';
 
+import NotFound from '../pages/page404/NotFound'
+// import ErrorBoundary from '../hooks/ErrorBoudary';
+
 import './app.scss';
 
 function App() {
@@ -35,6 +38,8 @@ function App() {
 
             <Route path="/category/:type/:param/page/:number" element={<PageCategory />} />
             <Route path="/genre/:type/sort/page/:number" element={<PageCategorySort />} />
+
+            <Route path='*' element={<NotFound />} />
           </Routes>
 
         </div>
