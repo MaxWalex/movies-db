@@ -7,7 +7,7 @@ function pageLogin() {
     <section className='login'>
         <div className="container">
             <Login />
-            <p>Не зарегистрированы? Тогда кликните на ссылку <Link to="/register">регистрация</Link></p>
+            <p>Не зарегистрированы? Тогда перейдите по ссылке <Link to="/register">регистрация</Link></p>
             <p style={{marginTop: '10px'}}><Link to="/reset-password">Забыли пароль?</Link></p>
         </div>
     </section>

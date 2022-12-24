@@ -6,7 +6,7 @@ function pageRegister() {
     <section className="register">
         <div className="container">
             <SignUp />
-            <p>Не авторизированный? Тогда кликните на ссылку <Link to="/login">авторизация</Link></p>
+            <p>Есть аккаунт? Тогда перейдите по ссылке <Link to="/login">авторизация</Link></p>
         </div>
     </section>
   )
