@@ -69,29 +69,6 @@ function PageCategory() {
     }
   }, [param])
 
-  // const content = categoryLoadingStatus !== 'fulfilled' ? <Loader /> :
-  // <>
-  //   <PageCategoryAside 
-  //     year={year}
-  //     sort={sort}
-  //     chooseGenres={chooseGenres}
-  //     setSort={setSort}
-  //     setYear={setYear}
-  //     handleSelect={handleSelect}
-  //     setIsSort={setIsSort}
-  //     handleReset={handleReset}
-  //   />
-
-  //   <div className="category_content">
-      
-  //     {category.results.length !== 0 ? category.results.map(film => {
-  //       return <CardItem key={film.id} film={film} type={type} />
-  //     }) : 
-  //       <p className="category_content-notfound">По вашему запросу ничего не найдено</p>
-  //     }
-  //   </div>
-  // </>
-
   const content = <>
     <PageCategoryAside 
       year={year}
