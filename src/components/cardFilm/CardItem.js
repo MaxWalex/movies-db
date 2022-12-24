@@ -1,11 +1,12 @@
 
-import { useState } from 'react';
-import { useAuth } from '../../hooks/useAuth';
 import { Link } from 'react-router-dom';
 import ProgressBar from 'react-customizable-progressbar';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { setFavFilms } from '../../reduxSlice/userSlice'
+import { setFavFilms } from '../../reduxSlice/userSlice';
+
+import Flip from 'react-reveal/Flip';
+
 import {
     collection,
     addDoc,
@@ -36,6 +37,8 @@ function CardItem({film, type = 'movie'}) {
                                                     >
                                                         <div className='vote'>{parseFloat(film.vote_average).toFixed(1)}</div>
                                                     </ProgressBar>
+
+    const durration = 10000;                                                 
 
     const fetchUserListings = async () => {
         const listingsRef = collection(db, 'listings')
@@ -91,6 +94,7 @@ function CardItem({film, type = 'movie'}) {
     }
 
   return (
+    <Flip left cascade>
     <div className='card'>
         <img src={img} />
 
@@ -119,6 +123,7 @@ function CardItem({film, type = 'movie'}) {
             </Link>
         </div>
     </div>
+    </Flip>
   )
 }
 

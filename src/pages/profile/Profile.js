@@ -54,9 +54,13 @@ function Profile() {
     updatePassword(user, newPassword)
       .then(toast.success('Пароль успешно изменен!'))
       .catch(error => {
-        console.log(error)
+        console.log(error.code)
         toast.error('Что-то пошло не так!')
       })
+  }
+
+  const formikInitialsValues = {
+    password: ''
   }
 
   return (
@@ -71,26 +75,26 @@ function Profile() {
             <div className='profile_inner-content'>
               <div className='profile_info'>
                 <p>Почта: <span>{email}</span></p>
-                <Formik initialValues = {{password: ''}}
+                <Formik initialValues = {formikInitialsValues}
                   validationSchema = {Yup.object({
                     password: Yup.string()
                             .min(6, 'Минимум 6 символа для заполнения')
                             .required('Пароль обязателен для заполнения!'),
                   })}
-                  onSubmit = {values => {
+                  onSubmit = {(values) => {
                       JSON.stringify(values, null, 2)
-                      console.log(values.password)
                       handleUpdatePassword(values.password)
                   }}
+                  resetForm
                 >
                   <Form className='profile_form'>
                     <p>Изменить пароль:</p>
                     <div className='profile_form-wrap'>
                       <div>
-                        <Field name='password' />
+                        <Field name='password' type="password" />
                         <ErrorMessage component="div" name='password' className='error' />
                       </div>
-                      <button>Обновить</button>
+                      <button type='submit'>Обновить</button>
                     </div>
                   </Form>
                 </Formik>

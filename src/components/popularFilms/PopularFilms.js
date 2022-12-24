@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
-import { popFilmsFetch } from './popularFilmsSlice'
+import { popFilmsFetch } from './popularFilmsSlice';
+
 import CardItem from '../cardFilm/CardItem';
 import Loader from '../loader/Loader';
 

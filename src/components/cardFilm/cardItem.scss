@@ -90,3 +90,38 @@
         justify-content: center;
     }
 }
+
+
+
+// .card_anim {
+//     &-enter {
+//         opacity: 0;
+//     }
+//     &-enter-active {
+//         opacity: 1;
+//         transition: opacity 200ms;
+//     }
+//     &-exit {
+//         opacity: 1;
+//     }
+//     &-exit-active {
+//         opacity: 0;
+//         transition: opacity 200ms;
+//     }
+// }
+
+
+.card_anim-enter {
+    opacity: 0;
+}
+.card_anim-enter-active {
+    opacity: 1;
+    transition: opacity 10000ms;
+}
+.card_anim-exit {
+    opacity: 1;
+}
+.card_anim-exit-active {
+    opacity: 0;
+    transition: opacity 10000ms;
+}

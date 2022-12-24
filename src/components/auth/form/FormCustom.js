@@ -18,7 +18,6 @@ function FormCustom({title, handleClick}) {
                 })}
                 onSubmit = {values => {
                     JSON.stringify(values, null, 2)
-                    console.log(values.email, values.password)
                     handleClick(values.email, values.password)
                 }}
             >
@@ -26,7 +25,7 @@ function FormCustom({title, handleClick}) {
                     <h1>{title}</h1>
                     <Field name="email" placeholder='Почта' type="email" />
                     <ErrorMessage className="error" name="email" component="div" />
-                    <Field name="password" placeholder='Пароль' type="text" />
+                    <Field name="password" placeholder='Пароль' type="password" />
                     <ErrorMessage className="error" name="password" component="div" />
                     <button>{title}</button>
                 </Form>
