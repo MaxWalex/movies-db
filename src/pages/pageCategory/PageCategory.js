@@ -9,9 +9,7 @@ import Pagination from "../../components/pagination/Pagination";
 import PageCategoryAside from "./pageCategoryAside";
 
 import './category.scss';
-import { doc } from "firebase/firestore";
 
-import imgBg1 from '../../images/cat-bg1.jpg';
 import imgBg2 from '../../images/cat-bg2.jpg';
 
 function PageCategory() {
@@ -71,8 +69,30 @@ function PageCategory() {
     }
   }, [param])
 
-  const content = categoryLoadingStatus !== 'fulfilled' ? <Loader /> :
-  <>
+  // const content = categoryLoadingStatus !== 'fulfilled' ? <Loader /> :
+  // <>
+  //   <PageCategoryAside 
+  //     year={year}
+  //     sort={sort}
+  //     chooseGenres={chooseGenres}
+  //     setSort={setSort}
+  //     setYear={setYear}
+  //     handleSelect={handleSelect}
+  //     setIsSort={setIsSort}
+  //     handleReset={handleReset}
+  //   />
+
+  //   <div className="category_content">
+      
+  //     {category.results.length !== 0 ? category.results.map(film => {
+  //       return <CardItem key={film.id} film={film} type={type} />
+  //     }) : 
+  //       <p className="category_content-notfound">По вашему запросу ничего не найдено</p>
+  //     }
+  //   </div>
+  // </>
+
+  const content = <>
     <PageCategoryAside 
       year={year}
       sort={sort}
@@ -84,14 +104,16 @@ function PageCategory() {
       handleReset={handleReset}
     />
 
-    <div className="category_content">
-      
-      {category.results.length !== 0 ? category.results.map(film => {
-        return <CardItem key={film.id} film={film} type={type} />
-      }) : 
-        <p className="category_content-notfound">По вашему запросу ничего не найдено</p>
-      }
-    </div>
+    {categoryLoadingStatus !== 'fulfilled' ? <Loader /> : 
+      <div className="category_content">
+          
+        {category.results.length !== 0 ? category.results.map(film => {
+          return <CardItem key={film.id} film={film} type={type} />
+        }) : 
+          <p className="category_content-notfound">По вашему запросу ничего не найдено</p>
+        }
+      </div>
+    }
   </>
 
   const pagination = categoryLoadingStatus === 'fulfilled' && category.results.length !== 0 ? <div className="container pagination_wrap">
@@ -112,7 +134,6 @@ function PageCategory() {
     <section className="category" style={{
       backgroundImage: `url(${imgBg2})`
     }}>
-      {/* <h2>{titlePage}</h2> */}
       
       <div className="container" style={{justifyContent: categoryLoadingStatus !== 'fulfilled' ? 'center' : 'space-between'}}>
         {content}

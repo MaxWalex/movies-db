@@ -1,34 +1,36 @@
-import { useState } from "react";
-import { Formik, Field, Form, ErrorMessage, useField } from 'formik';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import './form.scss'
+import './form.scss';
 
 function FormCustom({title, handleClick}) {
-    const [email, setEmail] = useState('')
-    const [pass, setPass] = useState('')
 
   return (
     <section className='auth'>
         <div className="container">
-            <form onSubmit={e => {
-                    e.preventDefault()
-                    handleClick(email, pass)
-                }}>
-                <h1>{title}</h1>
-                <input
-                    placeholder='Почта'
-                    type="email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                />
-                <input 
-                    placeholder='Пароль'
-                    type="password"
-                    value={pass}
-                    onChange={e => setPass(e.target.value)}
-                />
-                <button>{title}</button>
-            </form>
+            <Formik initialValues = {{email: '', password: ''}}
+                validationSchema = {Yup.object({
+                    password: Yup.string()
+                            .min(6, 'Минимум 6 символа для заполнения')
+                            .required('Пароль обязателен для заполнения!'),
+                    email: Yup.string()
+                            .email('Неправильный email адрес')
+                            .required('Email обязателен для заполнения!'),
+                })}
+                onSubmit = {values => {
+                    JSON.stringify(values, null, 2)
+                    console.log(values.email, values.password)
+                    handleClick(values.email, values.password)
+                }}
+            >
+                <Form>
+                    <h1>{title}</h1>
+                    <Field name="email" placeholder='Почта' type="email" />
+                    <ErrorMessage className="error" name="email" component="div" />
+                    <Field name="password" placeholder='Пароль' type="text" />
+                    <ErrorMessage className="error" name="password" component="div" />
+                    <button>{title}</button>
+                </Form>
+            </Formik>
         </div>
     </section>
   )

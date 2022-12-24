@@ -41,21 +41,19 @@ function SignUp() {
       const user = userCredentinal.user;
       dispatch(setAuth({loggedIn: true, checkingStatus: true, id: user.uid, email: user.email}))
       fetchUserListings(user.uid)
-      // const formData = {email, password, timestamp: serverTimestamp()}
-
-      // await setDoc(doc(db, `users`, user.uid), formData);
 
       navigate('/')
       toast.success('Успешно зарегистрированы!')
 
     } catch(err) {
+      console.log(err.code)
       if (err.code === 'weak-password') {
         toast.warning('Слабый пароль!')
       } else if (err.code === 'auth/too-many-requests') {
         toast.error('Слишком много попыток, попробуйте позже!')
       } else if (err.code === 'auth/invalid-email') {
         toast.error('Не правильная запись почты!')
-      } else if (err.code === 'email-already-in-use') {
+      } else if (err.code === 'auth/email-already-in-use') {
         toast.error('Такая почта уже зарегистрирована!')
       }
     }

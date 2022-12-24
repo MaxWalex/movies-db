@@ -6,6 +6,8 @@ import Loader from "../../components/loader/Loader";
 import CardItem from "../../components/cardFilm/CardItem";
 import Pagination from "../../components/pagination/Pagination";
 
+import imgBg2 from '../../images/cat-bg2.jpg';
+
 import './pageCategorySort.scss';
 
 function PageCategorySort() {
@@ -57,7 +59,9 @@ function PageCategorySort() {
   })
 
   return (
-    <section className="category_sort">
+    <section className="category_sort" style={{
+      backgroundImage: `url(${imgBg2})`
+    }}>
       <div className="container">
 
         <div className="category_sort-top">

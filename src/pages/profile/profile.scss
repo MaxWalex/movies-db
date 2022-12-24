@@ -1,8 +1,11 @@
 .profile {
-    color: #000;
+    padding-top: 50px;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
     h1 {
-        
-        margin: 30px 0;
+        margin-bottom: 30px;
     }
     button {
         cursor: pointer;
@@ -14,19 +17,70 @@
         border-radius: 10px;
         margin-top: 20px;
     }
+    &_info {
+        max-width: 400px;
+        width: 100%;
+        position: sticky;
+        top: 50px;
+        p {
+            color: #F2E35B;
+            font-size: 30px;
+            font-weight: bold;
+            span {
+                color: #fff;
+                font-size: 25px;
+                font-weight: normal;
+            }
+        }
+    }
+    &_inner-content {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+}
+
+.profile_form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    .error {
+        color: #e67373;
+    }
+    input {
+        width: 285px;
+        margin: 20px 0;
+        height: 30px;
+    }
+    button {
+        width: fit-content;
+        height: 30px;
+    }
+    &-wrap {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
 }
 
 .profile_fav-films_list {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 20px;
     .card > svg path {
         fill: #F2E35B;
     }
+    .card h3 {
+        color: #fff;
+    }
 }
 
 .profile_fav-films {
+    max-width: 850px;
+    width: 100%;
+    margin-left: 50px;
     h2 {
-        margin: 30px 0;
+        margin-bottom: 30px;
     }
 }

@@ -6,15 +6,21 @@
     .card + .card {
         margin: 0 !important;
     }
+    .card h3 {
+        color: #fff;
+    }
 }
 
 .category_sort {
+    background-attachment: fixed;
+    min-height: 100vh;
+    padding-bottom: 10px;
+    background-repeat: no-repeat;
     .pagination {
         margin: 40px auto;
         justify-content: center;
     }
     h2 {
-        color: #000;
         font-size: 24px;
         margin: 30px 0;
     }
