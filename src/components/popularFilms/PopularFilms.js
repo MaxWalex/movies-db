@@ -20,7 +20,10 @@ function PopularFilms() {
   return (
     <section className='popular'>
         <h2>Популярные фильмы:</h2>
-        <div className={`popular_content ${popFilmsLoadingStatus !== 'finish' ? 'centered' : ''}`}>
+        <div className="popular_content" style={{
+                display: `${popFilmsLoadingStatus !== 'finish' ? 'block' : 'grid'}`
+            }}
+        >
             {
                 popFilmsLoadingStatus !== 'finish' ? <Loader /> :
                 popFilms.results.map(film => {
