@@ -80,7 +80,14 @@
     max-width: 850px;
     width: 100%;
     margin-left: 50px;
-    h2 {
+    &_top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         margin-bottom: 30px;
+        button {
+            margin: 0;
+        }
+        
     }
 }

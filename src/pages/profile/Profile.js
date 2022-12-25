@@ -27,7 +27,7 @@ function Profile() {
 
   const auth = getAuth()
   const { favFilms } = useAuth()
-  const { email, loggedIn } = useSelector(state => state.user)
+  const { email, loggedIn, userID } = useSelector(state => state.user)
 
   const logOut = (e) => {
     e.preventDefault()
@@ -36,6 +36,18 @@ function Profile() {
     dispatch(removeUser())
     navigate('/')
     toast.success('Успешно вышли из аккаунта!')
+  }
+
+  console.log(favFilms)
+
+  const handleRemoveAll = async () => {
+    let newListings = favFilms.filter(film => {
+      deleteDoc(doc(db, "listings", film.id));
+    })
+  
+    dispatch(setFavFilms(newListings))
+  
+    toast.success(`Список понравившихся очищен!`)
   }
 
   const handleRemove = async (userID, filmTitle) => {
@@ -102,7 +114,10 @@ function Profile() {
               </div>
 
               <div className='profile_fav-films'>
-                <h2>Список понравившихся</h2>
+                <div className='profile_fav-films_top'>
+                  <h2>Список понравившихся</h2> 
+                  <button onClick={() => handleRemoveAll()}>Очистить все</button>
+                </div>
                 <div className='profile_fav-films_list'>
                   {favFilms.length === 0 ? 'Список пуст!' : favFilms.map(film => {
                     return <FavFilm

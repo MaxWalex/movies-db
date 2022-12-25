@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { categoryFetch, categoryGenresFetch, categorySortFetch } from './pageCategorySlice';
@@ -14,7 +14,8 @@ import imgBg2 from '../../images/cat-bg2.jpg';
 
 function PageCategory() {
   const dispatch = useDispatch()
-  const {category, categoryLoadingStatus} = useSelector(state => state.category)
+  const {category, categoryLoadingStatus } = useSelector(state => state.category)
+  const idle = 'idle'
   const { type, param, number } = useParams()
 
   const [sort, setSort] = useState('popularity.desc')
@@ -25,11 +26,15 @@ function PageCategory() {
   useEffect(() => {
     dispatch(categoryFetch({type, param, number}))
     dispatch(categoryGenresFetch(type))
+    console.log('EFFECT')
+  }, [type, param])
 
+  useMemo(() => {
     setSort('popularity.desc')
     setChooseGenres([])
     setYear('')
     setIsSort(false)
+    console.log('MEMO')
   }, [type, param])
 
   const handleReset = () => {
@@ -48,23 +53,6 @@ function PageCategory() {
       setChooseGenres([...chooseGenres, {id, name}])
     }
   }
-
-  // useMemo(() => {
-  //   switch (param) {
-  //     case 'popular':
-  //       setTitlePage('Популярные')
-  //       break;
-  //     case 'top_rated':
-  //       setTitlePage('В топе')
-  //       break;
-  //     case 'upcoming':
-  //       setTitlePage('Скоро выйдут')
-  //       break;
-  //     case 'airing_today':
-  //       setTitlePage('Просматриваемые сегодня')
-  //       break;
-  //   }
-  // }, [param])
 
   const content = <>
     <PageCategoryAside 
@@ -103,10 +91,9 @@ function PageCategory() {
     <section className="category" style={{
       backgroundImage: `url(${imgBg2})`
     }}>
-
-      {/* <h1>{titlePage}</h1> */}
       
       <div className="container" style={{justifyContent: categoryLoadingStatus !== 'fulfilled' ? 'center' : 'space-between'}}>
+        {/* {console.log('render')} */}
         {content}
       </div>
 
@@ -118,7 +105,6 @@ function PageCategory() {
         pathName={`/category/${type}/${param}`}
       />
       
-
     </section>
   )
 }

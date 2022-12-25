@@ -61,7 +61,7 @@ function Header() {
 
             <div className='header_right'>
                 <SearchButton showSearch={showSearch} dispatch={dispatch} toggleSearch={toggleSearch} />
-                {loggedIn ?  <Link to="/profile"><SvgUser />Мой кабинет</Link> :
+                {loggedIn ?  <Link to="/profile"><SvgUser />Профиль</Link> :
                     <Link to="/login"><SvgUser />Войти</Link>
                 }
             </div>

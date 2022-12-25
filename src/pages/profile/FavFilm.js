@@ -5,9 +5,7 @@ function FavFilm({film, uid, handleFavouriteRemove}) {
     <div className='card'>
         <img src={film.imgUrl} />
 
-        <svg onClick={() => handleFavouriteRemove(uid, film.title)} className='fav' version="1.1" id="Layer_1" x="0px" y="0px" width="15px" height="15px" viewBox="0 0 15 15">
-            <path d="M13.91,6.75c-1.17,2.25-4.3,5.31-6.07,6.94c-0.1903,0.1718-0.4797,0.1718-0.67,0C5.39,12.06,2.26,9,1.09,6.75  C-1.48,1.8,5-1.5,7.5,3.45C10-1.5,16.48,1.8,13.91,6.75z"/>
-        </svg>  
+        <svg onClick={() => handleFavouriteRemove(uid, film.title)} className='fav' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48px" height="48px"><path d="M 4 2 L 4 22 L 12 19 L 20 22 L 20 2 L 6 2 L 4 2 z" style={{fill: "#f2e35b"}}/></svg>
 
         {/* {progressBar} */}
 

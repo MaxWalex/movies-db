@@ -34,7 +34,7 @@ function PageSingleTopRight({pageInfo, dispatch, type}) {
 
             {pageInfo.runtime && <div className='time single_top-item'>
                 <span>Время просмотра:</span>
-                {pageInfo.runtime}м.
+                {pageInfo.runtime} мин.
             </div>}
 
             {pageInfo.number_of_seasons && <div className='seasons single_top-item'>
