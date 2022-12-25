@@ -1,0 +1,25 @@
+.notfound {
+    text-align: center;
+    height: 80vh;
+    
+    .container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 300px;
+        color: #F2E35B;
+        font-weight: bold;
+    }
+    .text {
+        color: #000;
+        font-size: 20px;
+        a {
+            font-weight: bold;
+        }
+    }
+}
