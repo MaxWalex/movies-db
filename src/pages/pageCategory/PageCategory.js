@@ -5,8 +5,8 @@ import { categoryFetch, categoryGenresFetch, categorySortFetch } from './pageCat
 
 import CardItem from "../../components/cardFilm/CardItem";
 import Loader from "../../components/loader/Loader";
-import Pagination from "../../components/pagination/Pagination";
 import PageCategoryAside from "./pageCategoryAside";
+import PaginationComponent from "../../components/pagination/Pagination";
 
 import './category.scss';
 
@@ -37,7 +37,6 @@ function PageCategory() {
     setChooseGenres([])
     setYear('')
     setIsSort(false)
-    dispatch(categoryFetch({type, param, number}))
   }
 
   const handleSelect = (e, id, name) => {
@@ -50,24 +49,22 @@ function PageCategory() {
     }
   }
 
-  let titlePage = '';
-
-  useMemo(() => {
-    switch (param) {
-      case 'popular':
-        titlePage = 'Популярные';
-        break;
-      case 'top_rated':
-        titlePage = 'В топе';
-        break;
-      case 'upcoming':
-        titlePage = 'Скоро выйдут';
-        break;
-      case 'airing_today':
-        titlePage = 'Просматриваемые сегодня';
-        break;
-    }
-  }, [param])
+  // useMemo(() => {
+  //   switch (param) {
+  //     case 'popular':
+  //       setTitlePage('Популярные')
+  //       break;
+  //     case 'top_rated':
+  //       setTitlePage('В топе')
+  //       break;
+  //     case 'upcoming':
+  //       setTitlePage('Скоро выйдут')
+  //       break;
+  //     case 'airing_today':
+  //       setTitlePage('Просматриваемые сегодня')
+  //       break;
+  //   }
+  // }, [param])
 
   const content = <>
     <PageCategoryAside 
@@ -93,30 +90,33 @@ function PageCategory() {
     }
   </>
 
-  const pagination = categoryLoadingStatus === 'fulfilled' && category.results.length !== 0 ? <div className="container pagination_wrap">
-        <Pagination
-          number={number}
-          pages={category.total_pages}
-          pathName={`/category/${type}/${param}`}
-          fetchNext={isSort ? 
-            categorySortFetch({type, param: chooseGenres, number: +number + 1, year, sort}) : 
-            categoryFetch({type, param, number: +number + 1})}
-          fetchPrev={isSort ? 
-            categorySortFetch({type, param: chooseGenres, number: +number - 1, year, sort}) : 
-            categoryFetch({type, param, number: +number - 1})}
-        />
-      </div> : '';
+    const handleClickPagination = (pagPage) => {
+
+      if (isSort) {
+        dispatch(categorySortFetch({type, param: chooseGenres, number: pagPage, year, sort}))
+      } else {
+        dispatch(categoryFetch({type, param, number: pagPage}))
+      }
+    }
 
   return (
     <section className="category" style={{
       backgroundImage: `url(${imgBg2})`
     }}>
+
+      {/* <h1>{titlePage}</h1> */}
       
       <div className="container" style={{justifyContent: categoryLoadingStatus !== 'fulfilled' ? 'center' : 'space-between'}}>
         {content}
       </div>
 
-      {pagination}
+      <PaginationComponent
+        status={categoryLoadingStatus}
+        data={category}
+        pageRouter={+number}
+        handleClickPagination={handleClickPagination}
+        pathName={`/category/${type}/${param}`}
+      />
       
 
     </section>

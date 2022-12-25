@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { categorySortFetch } from './pageCategorySlice';
-import { useParams } from "react-router-dom";
+import { categorySortFetch, categoryFetch} from './pageCategorySlice';
+import { useParams, Link } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
 
 function PageCategoryAside({setSort, setYear, handleSelect, setIsSort, chooseGenres, year, sort, handleReset}) {
@@ -19,7 +19,7 @@ function PageCategoryAside({setSort, setYear, handleSelect, setIsSort, chooseGen
                         ])
                         
     const dispatch = useDispatch()
-    const {type, number} = useParams()
+    const {type, number, param} = useParams()
     
     const {categoryGenresLoadingStatus, genres} = useSelector(state => state.category)
 
@@ -78,17 +78,16 @@ function PageCategoryAside({setSort, setYear, handleSelect, setIsSort, chooseGen
                   </div>
                 </div>
 
-                <a href="#" className="aside_btn" onClick={e => {
-                  e.preventDefault()
-                  dispatch(categorySortFetch({type, param: chooseGenres, number, year, sort}))
+                <Link to={`/category/${type}/${param}/page/${1}`} className="aside_btn" onClick={() => {
+                  dispatch(categorySortFetch({type, param: chooseGenres, number: 1, year, sort}))
                   setIsSort(true)
-                }}>Поиск</a>
+                }}>Поиск</Link>
 
-                <a href="#" className="aside_btn" onClick={e => {
-                  e.preventDefault()
+                <Link to={`/category/${type}/${param}/page/${1}`} className="aside_btn" onClick={() => {
                   handleReset()
+                  dispatch(categoryFetch({type, param, number: 1}))
                   genresRef.current.querySelectorAll('span').forEach(e => e.classList.remove('active'))
-                }}>Cбросить фильтр</a>
+                }}>Cбросить фильтр</Link>
               </div>
             </aside>
   )

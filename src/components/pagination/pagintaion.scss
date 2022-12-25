@@ -1,27 +1,26 @@
 .pagination {
-    display: flex;
-    align-items: center;
-    margin: 40px 0;
-    margin-left: 260px;
-    a {
-        padding: 10px;
-        background-color: #F2E35B;
-        border-radius: 10px;
-        color: #000;
-        border: none;
-        font-weight: bold;
-        font-size: 20px;
-        & + a {
-            margin-left: 10px;
+    nav {
+        padding: 50px 0;
+        ul {
+            justify-content: center;
+            li {
+                &+ li {
+                    margin-left: 0px;
+                }
+                div {
+                    color: #fff;
+                }
+                a {
+                    color: #fff;
+                }
+                a.Mui-selected {
+                    color:#000;
+                    background-color: #F2E35B;
+                    &:hover {
+                        background-color: #c7bc56;
+                    }
+                }
+            }
         }
-        &.disable {
-            pointer-events: none;
-            background-color: #87803b;
-        }
-    }
-    span {
-        color: #000;
-        font-weight: bold;
-        margin: 0 10px;
     }
 }

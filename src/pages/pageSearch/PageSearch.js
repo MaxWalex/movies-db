@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { pageSearchFetch } from './pageSearchSlice';
 import Loader from '../../components/loader/Loader';
 import CardItem from '../../components/cardFilm/CardItem';
-import Pagination from '../../components/pagination/Pagination';
+import PaginationComponent from '../../components/pagination/Pagination';
 
 import bgImg from '../../images/bg-search.jpg';
 
@@ -18,6 +18,11 @@ function PageSearch() {
     useEffect(() => {
         dispatch(pageSearchFetch({type, number}))
     }, [])
+
+    const handleClickPagination = (pagPage) => {
+
+        dispatch(pageSearchFetch({type, number: pagPage}))
+      }
    
     const contentSearch = () => {
         
@@ -33,12 +38,12 @@ function PageSearch() {
                     })}
                 </div>
             
-                <Pagination
-                        number={number}
-                        pages={pageSearch.total_pages}
+                <PaginationComponent
+                        status={pageSearchLoadingStatus}
+                        data={pageSearch}
+                        pageRouter={+number}
+                        handleClickPagination={handleClickPagination}
                         pathName={`/search/${type}`}
-                        fetchPrev={pageSearchFetch({type, number: +number - 1})}
-                        fetchNext={pageSearchFetch({type, number: +number + 1})}
                     />
             </>
         )
