@@ -27,7 +27,7 @@ function Profile() {
 
   const auth = getAuth()
   const { favFilms } = useAuth()
-  const { email, loggedIn, userID } = useSelector(state => state.user)
+  const { email, loggedIn } = useSelector(state => state.user)
 
   const logOut = (e) => {
     e.preventDefault()
@@ -37,8 +37,6 @@ function Profile() {
     navigate('/')
     toast.success('Успешно вышли из аккаунта!')
   }
-
-  console.log(favFilms)
 
   const handleRemoveAll = async () => {
     let newListings = favFilms.filter(film => {

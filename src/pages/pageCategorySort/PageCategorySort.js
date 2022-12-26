@@ -39,6 +39,7 @@ function PageCategorySort() {
     dispatch(genreSortFetch({type, param: choosenGeners.id, number: pagPage}))
   }
 
+
   const content = categorySortLoadingStatus !== 'fulfilled' ? <Loader /> : genreSort.results.length !== 0 ? <>
             {
               choosenGeners.name ? <>
@@ -51,10 +52,10 @@ function PageCategorySort() {
 
                 <PaginationComponent 
                   status={categorySortLoadingStatus}
-                  data={choosenGeners}
+                  data={genreSort}
                   pageRouter={+number}
                   handleClickPagination={handleClickPagination}
-                  pathName={`/genre/${type}/sort}`}
+                  pathName={`/genre/${type}/sort`}
                 />
               </> : <Link to="/">На главную</Link>  
             } 

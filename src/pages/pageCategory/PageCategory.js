@@ -15,7 +15,6 @@ import imgBg2 from '../../images/cat-bg2.jpg';
 function PageCategory() {
   const dispatch = useDispatch()
   const {category, categoryLoadingStatus } = useSelector(state => state.category)
-  const idle = 'idle'
   const { type, param, number } = useParams()
 
   const [sort, setSort] = useState('popularity.desc')
@@ -26,7 +25,6 @@ function PageCategory() {
   useEffect(() => {
     dispatch(categoryFetch({type, param, number}))
     dispatch(categoryGenresFetch(type))
-    console.log('EFFECT')
   }, [type, param])
 
   useMemo(() => {
@@ -34,7 +32,6 @@ function PageCategory() {
     setChooseGenres([])
     setYear('')
     setIsSort(false)
-    console.log('MEMO')
   }, [type, param])
 
   const handleReset = () => {
@@ -93,7 +90,6 @@ function PageCategory() {
     }}>
       
       <div className="container" style={{justifyContent: categoryLoadingStatus !== 'fulfilled' ? 'center' : 'space-between'}}>
-        {/* {console.log('render')} */}
         {content}
       </div>
 

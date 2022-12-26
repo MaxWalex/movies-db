@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { singlePageFetch, singlePageVideoFetch, singlePageIDSFetch } from './pageSingleSlice';
@@ -18,7 +18,6 @@ function PageSingle() {
 
     const { 
         singlePage, 
-        singlePageVideo, 
         singlePageIDS,
         singlePageLoadingStatus, 
         singlePageVideoLoadingStatus,
@@ -26,23 +25,16 @@ function PageSingle() {
     } = useSelector(state => state.singlePage)
 
     useEffect(() => {
-        dispatch(singlePageFetch({id, type})) 
         dispatch(singlePageIDSFetch({id, type}))
+        dispatch(singlePageFetch({id, type})) 
     }, [id])
 
     useEffect(() => {
         if (singlePageIDSLoadingStatus === 'fulfilled') {    
             dispatch(singlePageVideoFetch(singlePageIDS.imdb_id))
-        }
+        }        
     }, [singlePageIDSLoadingStatus])
 
-    const centered = singlePageVideoLoadingStatus !== 'fulfilled' ? 'center' : '';
-
-    const iframe = singlePageVideoLoadingStatus !== 'fulfilled' ? <Loader /> : 
-                    singlePageVideo.data[0] ? <iframe src={singlePageVideo.data[0].iframe_src} rameborder="0" allowFullScreen></iframe> : 
-                    <p>Видео еще не добавлено в базу</p>;
-
-    
   return (
     <section className='single_page' style={{textAlign: singlePageLoadingStatus !== 'fulfilled' ? 'center' : 'left'}}>
 
@@ -54,8 +46,8 @@ function PageSingle() {
 
             <div className='container'>
 
-                <PageSingleTop type={type} pageInfo={singlePage} dispatch={dispatch} />
-                <PageSingleVideo iframe={iframe} centered={centered} />
+                <PageSingleTop />
+                <PageSingleVideo status={singlePageVideoLoadingStatus} />
                 <PageSingleSimilarFilms type={type} id={id} />
                 <PageSingleComments type={type} id={id} />
 

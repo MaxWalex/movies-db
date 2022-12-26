@@ -2,12 +2,12 @@
 import PageSingleTopLeft from './PageSingleTopLeft';
 import PageSingleTopRight from './PageSingleTopRight';
 
-function PageSingleTop({pageInfo, dispatch, type}) {
+function PageSingleTop() {
   return (
     <div className='single_top'>
-        <PageSingleTopLeft pageInfo={pageInfo} dispatch={dispatch} type={type} />
+        <PageSingleTopLeft />
 
-        <PageSingleTopRight pageInfo={pageInfo} dispatch={dispatch} type={type} />
+        <PageSingleTopRight />
     </div>
   )
 }

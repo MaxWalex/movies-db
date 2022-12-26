@@ -5,9 +5,12 @@ const initialState = {
     singlePageLoadingStatus: 'idle',
     singlePageVideoLoadingStatus: 'idle',
     singlePageIDSLoadingStatus: 'idle',
+    singlePageActorsLoadingStatus: 'idle',
+
     singlePage: [],
     singlePageVideo: [],
-    singlePageIDS: []
+    singlePageIDS: [],
+    singlePageActors: []
 }
 
 export const singlePageFetch = createAsyncThunk(
@@ -31,6 +34,14 @@ export const singlePageVideoFetch = createAsyncThunk(
     async (id) => {
         const { request } = useHttp()
         return await request(`https://videocdn.tv/api/short?imdb_id=${id}&api_token=ETGz3l3Gz3SJBynR2QWz3o5ctPAeT8AY`) 
+    }
+)
+
+export const singlePageActorsFetch = createAsyncThunk(
+    'singlePage/singlePageActorsFetch',
+    async ({id, type}) => {
+        const { request } = useHttp()
+        return await request(`https://api.themoviedb.org/3/${type}/${id}/credits?api_key=83b24db968cf6c546c5d8ec3e8254665&language=ru-RU`) 
     }
 )
 
@@ -75,6 +86,17 @@ const mainSlice = createSlice({
             })
             .addCase(singlePageIDSFetch.rejected, state => {
                 state.singlePageIDSLoadingStatus = 'rejected'
+            })
+
+            .addCase(singlePageActorsFetch.pending, state => {
+                state.singlePageActorsLoadingStatus = 'pending'
+            })
+            .addCase(singlePageActorsFetch.fulfilled, (state, action) => {
+                state.singlePageActorsLoadingStatus = 'fulfilled'
+                state.singlePageActors = action.payload
+            })
+            .addCase(singlePageActorsFetch.rejected, state => {
+                state.singlePageActorsLoadingStatus = 'rejected'
             })
 
             .addDefaultCase(() => {})

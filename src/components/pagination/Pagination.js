@@ -4,7 +4,7 @@ import { Pagination, PaginationItem } from '@mui/material';
 import './pagintaion.scss'
 
 function PaginationComponent({data, status, handleClickPagination, pageRouter, pathName}) {
-
+    console.log(data.total_pages)
     let totalPages = data.total_pages >= 500 ? 500 : data.total_pages;
 
   return (

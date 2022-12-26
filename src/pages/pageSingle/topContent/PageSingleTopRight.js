@@ -1,8 +1,53 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+
+import { singlePageActorsFetch } from '../pageSingleSlice'
 import { setGenres } from '../../pageCategorySort/pageCategorySortSlice';
 
-function PageSingleTopRight({pageInfo, dispatch, type}) {
-    const title = pageInfo.title ? pageInfo.title : pageInfo.name;
+import PageSingleTopRightInfo from './PageSingleTopRightInfo';
+
+import HorizontalScroll from 'react-scroll-horizontal';
+
+import imgNotFound from '../../../images/imgNotFound.jpg';
+
+
+function Actors() {
+  const { singlePageActors, singlePageActorsLoadingStatus } = useSelector(state => state.singlePage)
+
+  const parent  = { width: `100%`, height: `100px`}
+  const child = { width: `100px`, height: `100px`}
+
+  return (
+    <div className='actors'>
+        <h3>Актерский состав:</h3>
+        {singlePageActorsLoadingStatus === 'fulfilled' && <div style={parent} className='actor_items'><HorizontalScroll reverseScroll={true}>
+                {singlePageActors.length !== 0 && singlePageActors.cast.map(item => {
+                    return <div style={child} className='actor_item' key={item.id}>
+                              <img src={item.profile_path ? `https://image.tmdb.org/t/p/w500/${item.profile_path}` : imgNotFound} />
+                              <div className='actor_link'>
+                                <Link to={`/actor/${item.id}/${item.name.replace(/ /g, '-')}`}>{item.name}</Link>
+                              </div>
+                            </div>
+                })}
+            </HorizontalScroll></div>
+        }
+    </div>
+  )
+}
+
+function PageSingleTopRight() {
+    const dispatch = useDispatch()
+
+    const { type, id } = useParams()
+    const { singlePage } = useSelector(state => state.singlePage)
+
+    const title = singlePage.title ? singlePage.title : singlePage.name;
+
+    useEffect(() => {
+      dispatch(singlePageActorsFetch({id, type}))
+    }, [])
 
   return (
     <div className='single_top-right'>
@@ -11,7 +56,7 @@ function PageSingleTopRight({pageInfo, dispatch, type}) {
             <div className='genres single_top-item'>
                 <span>Жанры:</span>
                 {
-                    pageInfo.genres.map(genre => {
+                    singlePage.genres.map(genre => {
                         return <Link
                                 to={`/genre/${type}/sort/page/1`}
                                 onClick={() => dispatch(setGenres({id: genre.id, name: genre.name}))}
@@ -19,43 +64,10 @@ function PageSingleTopRight({pageInfo, dispatch, type}) {
                     })
                 }
             </div>
-            
-            <div className='date single_top-item'>
-                <span>Год:</span>
-                {pageInfo.release_date ? pageInfo.release_date : pageInfo.first_air_date}
-            </div>
 
-            {pageInfo.production_countries && <div className='countries single_top-item'>
-                <span>Страна:</span>
-                {pageInfo.production_countries.map(country => {
-                    return <span key={country.iso_3166_1}>{country.name}</span>
-                })}
-            </div>}
+            <PageSingleTopRightInfo />
 
-            {pageInfo.runtime && <div className='time single_top-item'>
-                <span>Время просмотра:</span>
-                {pageInfo.runtime} мин.
-            </div>}
-
-            {pageInfo.number_of_seasons && <div className='seasons single_top-item'>
-                <span>К-во сезонов:</span>
-                {pageInfo.number_of_seasons}
-            </div>}
-            
-            {pageInfo.number_of_episodes && <div className='series single_top-item'>
-                <span>К-во серий:</span>
-                {pageInfo.number_of_episodes}
-            </div>}
-
-            {pageInfo.tagline && <div className='slogan single_top-item'>
-                <span>Слоган:</span>
-                {pageInfo.tagline}
-            </div>}
-
-            {pageInfo.overview.length !== 0 && <div className='description single_top-item'>
-                <span>Описание:</span>
-                {pageInfo.overview}
-            </div>}
+            <Actors />
     </div>
   )
 }

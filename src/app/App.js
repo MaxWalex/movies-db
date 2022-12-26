@@ -11,6 +11,7 @@ import PageCategory from '../pages/pageCategory/PageCategory';
 import PageSearch from '../pages/pageSearch/PageSearch';
 import PageCategorySort from '../pages/pageCategorySort/PageCategorySort';
 import Profile from '../pages/profile/Profile';
+import PageSingleActor from '../pages/pageSingleActor/PageSingleActor';
 
 import NotFound from '../pages/page404/NotFound'
 // import ErrorBoundary from '../hooks/ErrorBoudary';
@@ -35,6 +36,7 @@ function App() {
             <Route path="/" element={<PageMain />} />
             
             <Route path="/:type/:id" element={<PageSingle />} />
+            <Route path="/actor/:id/:name" element={<PageSingleActor />} />
 
             <Route path="/search/:type/page/:number" element={<PageSearch />} />
 
