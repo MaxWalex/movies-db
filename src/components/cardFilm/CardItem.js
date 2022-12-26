@@ -1,4 +1,6 @@
 
+import { useState } from 'react';
+
 import { Link } from 'react-router-dom';
 import ProgressBar from 'react-customizable-progressbar';
 import { useSelector, useDispatch } from 'react-redux';
@@ -18,6 +20,7 @@ import imgNF from '../../images/imgNotFound.jpg';
 import './cardItem.scss';
 
 function CardItem({film, type = 'movie'}) {
+    const [disable, setDisable] = useState(false)
     const dispatch = useDispatch()
     const { userID, favFilms, loggedIn } = useSelector(state => state.user)
 
@@ -58,37 +61,50 @@ function CardItem({film, type = 'movie'}) {
     }    
 
     const handleFavourite = async () => {
-        let flag = true;
+            if (handleFavourite.cantClick) return;
 
-        favFilms.forEach(item => {
-            if (item.data.id === film.id) {
-                toast.warning(`Фильм "${title}" уже был добавлен!`)
-                flag = false;
-                return; 
-            }
-            return true;
-        })
+            handleFavourite.cantClick = true;
 
-        if (flag) {
-            try {
+            let flag = true;
 
-                const cardData = {
-                    id: film.id,
-                    imgUrl: img,
-                    title: title,
-                    type: typeMedia,
-                    userRef: userID
+            favFilms.forEach(item => {
+                if (item.data.id === film.id) {
+                    toast.warning(`Фильм "${title}" уже был добавлен!`)
+                    flag = false;
+                    return; 
                 }
+                return true;
+            })
     
-                await addDoc(collection(db, "listings"), cardData)
+            if (flag) {
     
-                fetchUserListings()
+                try {
+                    const cardData = {
+                        id: film.id,
+                        imgUrl: img,
+                        title: title,
+                        type: typeMedia,
+                        userRef: userID
+                    }
     
-                toast.success(`Фильм "${title}" добавлен в избранные!`)
-            } catch(err) {
-                console.log(err)
+                    await addDoc(collection(db, "listings"), cardData)
+                        .then(() => setDisable(true))
+                        .finally(() => {
+                            console.log(1)
+                            setDisable(false)
+                        })
+    
+                    fetchUserListings()
+    
+                    toast.success(`Фильм "${title}" добавлен в избранные!`)
+                } catch(err) {
+                    console.log(err)
+                }
             }
-        }
+
+            setTimeout(()=>{
+                handleFavourite.cantClick = false;
+            }, 500 )
     }
 
   return (

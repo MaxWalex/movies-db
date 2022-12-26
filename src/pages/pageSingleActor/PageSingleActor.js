@@ -4,13 +4,13 @@ import { singlePageActorFetch } from './PageSingleActorSlice';
 import { useParams } from "react-router-dom";
 
 import PageSingleActorBIO from "./bio/PageSingleActorBIO";
-// import PageSingleActorCombined from "./films/PageSingleActorCombined";
 import PageSingleActorTv from "./films/PageSingleActorTv";
 import PageSingleActorMovies from "./films/PageSingleActorMovies";
 
 import Loader from '../../components/loader/Loader';
 
 import imgBG from '../../images/profilebg.jpg';
+import imgNotFound from '../../images/imgNotFound.jpg'
 
 import './pageSingleActor.scss';
 
@@ -30,7 +30,7 @@ function PageSingleActor() {
                 <div className='single_actor-top'>
                     
                     <div className='single_actor-top_left'>
-                        <img src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`} />
+                        <img src={actor.profile_path ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}` : imgNotFound} />
                     </div>
 
                     <PageSingleActorBIO actor={actor} />

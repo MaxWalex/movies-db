@@ -55,10 +55,11 @@
 .actor_famouse {
     & > h2 {
         text-align: center;
-        margin: 40px 0;
+        margin: 40px 0 !important;
     }
     h2 {
        text-align: center;
+       margin-bottom: 20px;
     }
 }
 .actor_famouse-wrapp {
@@ -72,6 +73,18 @@
     background-color: rgba(41, 41, 41, 0.5);
     padding: 20px;
     border-radius: 20px;
+    .famous_block {
+        max-height: 500px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        &::-webkit-scrollbar {
+            width: 7px;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: #F2E35B;
+            border-radius: 10px;
+        }
+    }
 }
 
 .actor_fam-item {
@@ -96,7 +109,7 @@
         font-weight: bold;
     }
     &:hover {
-        transform: scale(1.1);
+        margin-left: 10px;
         a {
             color: #F2E35B;
         }
@@ -138,6 +151,9 @@
                 color: #F2E35B;
             }
         }
+    }
+    .slick-track {
+        margin-left: 0 !important;
     }
     .slick-cloned {
         display: none !important;

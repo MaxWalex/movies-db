@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 function PageSingleVideo({status}) {
 
-  const {singlePageVideo } = useSelector(state => state.singlePage)
+  const { singlePageVideo, singlePageVideoLoadingStatus } = useSelector(state => state.singlePage)
 
   const iframe = status !== 'fulfilled' ? <Loader /> : 
                     singlePageVideo.data[0] ? <iframe src={singlePageVideo.data[0].iframe_src} rameborder="0" allowFullScreen></iframe> : 
@@ -13,9 +13,11 @@ function PageSingleVideo({status}) {
   const centered = status !== 'fulfilled' ? 'center' : '';
 
   return (
-    <div className={`single_video ${centered}`}>
-        {iframe}
-    </div>
+    <>
+      {singlePageVideoLoadingStatus !== 'rejected' && <div className={`single_video ${centered}`}>
+          {iframe}
+      </div>}
+    </>
   )
 }
 

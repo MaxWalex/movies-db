@@ -13,6 +13,8 @@ function PageSingleActorMovies() {
     useEffect(() => {
         dispatch(singlePageActorMoviesFetch(id))
     }, [])
+    
+
 
   return (
     <>

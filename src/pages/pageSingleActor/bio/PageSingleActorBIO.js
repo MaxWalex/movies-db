@@ -1,6 +1,8 @@
-import PageSingleActorCombined from "../films/PageSingleActorCombined"
+import PageSingleActorCombined from "../films/PageSingleActorCombined";
+import { useSelector } from "react-redux";
 
 function PageSingleActorBIO({actor}) {
+    const combined = useSelector(state => state.singlePageActor)
   return (
     <div className='single_actor-top_right'>
         <h1>{actor.name}</h1>
@@ -25,10 +27,10 @@ function PageSingleActorBIO({actor}) {
             <p>{actor.place_of_birth}</p>
         </div>}
 
-        <div className="slava">
+        {combined.length !== 0 &&  <div className="slava">
             <h2>Известность за:</h2>
             <PageSingleActorCombined />
-        </div>
+        </div>}
     </div>
   )
 }

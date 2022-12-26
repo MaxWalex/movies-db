@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -28,6 +29,10 @@ function Profile() {
   const auth = getAuth()
   const { favFilms } = useAuth()
   const { email, loggedIn } = useSelector(state => state.user)
+
+  useEffect(() => {
+    !loggedIn && navigate('/login')
+  }, [])
 
   const logOut = (e) => {
     e.preventDefault()

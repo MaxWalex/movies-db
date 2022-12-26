@@ -32,20 +32,24 @@ function Actors() {
   };
 
   return (
-    <div className='actors'>
-        <h3>Актерский состав:</h3>
-        {singlePageActorsLoadingStatus === 'fulfilled' && <div style={parent} className='actor_items'><Slider {...settings}>
-                {singlePageActors.length !== 0 && singlePageActors.cast.map(item => {
-                    return <div style={child} className='actor_item' key={item.id}>
-                              <img src={item.profile_path ? `https://image.tmdb.org/t/p/w500/${item.profile_path}` : imgNotFound} />
-                              <div className='actor_link'>
-                                <Link to={`/actor/${item.id}/${item.name.replace(/ /g, '-')}`}>{item.name}</Link>
-                              </div>
-                            </div>
-                })}
-            </Slider></div>
-        }
-    </div>
+    <>
+      {singlePageActors.length !== 0 && singlePageActors.cast.length !== 0 && <div className='actors'>
+            <h3>Актерский состав:</h3>
+            {singlePageActorsLoadingStatus === 'fulfilled' && <div style={parent} className='actor_items'><Slider {...settings}>
+                    {singlePageActors.cast.map(item => {
+                        return <div style={child} className='actor_item' key={item.id}>
+                                  <img src={item.profile_path ? `https://image.tmdb.org/t/p/w500/${item.profile_path}` : imgNotFound} />
+                                  <div className='actor_link'>
+                                    <Link to={`/actor/${item.id}/${item.name.replace(/ /g, '-')}`}>{item.name}</Link>
+                                  </div>
+                                </div>
+                    })}
+                </Slider></div>
+            }
+        </div>
+      }
+    </>
+    
   )
 }
 

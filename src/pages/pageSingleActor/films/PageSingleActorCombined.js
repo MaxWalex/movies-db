@@ -39,7 +39,7 @@ function PageSingleActorCombined() {
         {singlePageActorCombinedLoadingStatus !== 'fulfilled' ? <Loader /> : <div className='famous_block'><Slider {...settings}>
           {combined.cast.map((item, index) => {
             if (index <= 20) {
-              return <div className='pop_film'>
+              return <div className='pop_film' key={item.id}>
                       <Link to={`/${item.media_type}/${item.id}/`}>
                         <img src={item.poster_path ? `https://image.tmdb.org/t/p/w500/${item.poster_path}` : imgNotFound} />
                         <h4>{item.title}</h4>

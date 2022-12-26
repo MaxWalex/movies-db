@@ -205,6 +205,9 @@
     .slick-dots button::before {
         color: #F2E35B !important;
     }
+    .slick-track {
+        margin-left: 0 !important;
+    }
 }
 .actor_link {
     position: absolute;
