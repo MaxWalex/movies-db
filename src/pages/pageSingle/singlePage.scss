@@ -202,6 +202,13 @@
 }
 .actor_items {
     margin-top: 20px;
+    .slick-dots button::before {
+        color: #F2E35B !important;
+    }
+    // .slick-track {
+    //     overflow: hidden !important;
+    //     height: 110px;
+    // }
 }
 .actor_link {
     position: absolute;
@@ -213,7 +220,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 90%;
     height: 100%;
     text-align: center;
     background-color: rgba(0,0,0,0.6);

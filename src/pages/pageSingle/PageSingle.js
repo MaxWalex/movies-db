@@ -41,7 +41,7 @@ function PageSingle() {
         {singlePageLoadingStatus !== 'fulfilled' ? <Loader /> :
         <>
             <div className='single_page-img' style={{
-                backgroundImage: `url(https://image.tmdb.org/t/p/original${singlePage.backdrop_path})`
+                backgroundImage: `url(https://image.tmdb.org/t/p/original/${singlePage.backdrop_path})`
             }}></div>
 
             <div className='container'>

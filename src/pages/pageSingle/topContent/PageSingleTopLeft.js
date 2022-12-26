@@ -10,6 +10,8 @@ import {
   } from 'firebase/firestore'
 import { db } from '../../../firebase/firebase';
 
+import imgNotFound from '../../../images/imgNotFound.jpg'
+
 function PageSingleTopLeft() {
     const dispatch = useDispatch()
 
@@ -73,7 +75,7 @@ function PageSingleTopLeft() {
 
   return (
     <div className='single_top-left'>
-        <img src={`https://image.tmdb.org/t/p/w500${singlePage.poster_path}`} />
+        <img src={singlePage.poster_path ? `https://image.tmdb.org/t/p/w500${singlePage.poster_path}` : imgNotFound } />
 
         {loggedIn && <svg onClick={() => handleFavourite()} className='fav' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48px" height="48px"><path d="M 4 2 L 4 22 L 12 19 L 20 22 L 20 2 L 6 2 L 4 2 z" style={{fill: "#f2e35b"}}/></svg>}
 

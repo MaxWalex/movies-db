@@ -9,6 +9,7 @@ import { setGenres } from '../../pageCategorySort/pageCategorySortSlice';
 import PageSingleTopRightInfo from './PageSingleTopRightInfo';
 
 import HorizontalScroll from 'react-scroll-horizontal';
+import Slider from "react-slick";
 
 import imgNotFound from '../../../images/imgNotFound.jpg';
 
@@ -19,10 +20,16 @@ function Actors() {
   const parent  = { width: `100%`, height: `100px`}
   const child = { width: `100px`, height: `100px`}
 
+  const settings = {
+    speed: 500,
+    slidesToShow: 7,
+    slidesToScroll: 5
+  };
+
   return (
     <div className='actors'>
         <h3>Актерский состав:</h3>
-        {singlePageActorsLoadingStatus === 'fulfilled' && <div style={parent} className='actor_items'><HorizontalScroll reverseScroll={true}>
+        {singlePageActorsLoadingStatus === 'fulfilled' && <div style={parent} className='actor_items'><Slider {...settings}>
                 {singlePageActors.length !== 0 && singlePageActors.cast.map(item => {
                     return <div style={child} className='actor_item' key={item.id}>
                               <img src={item.profile_path ? `https://image.tmdb.org/t/p/w500/${item.profile_path}` : imgNotFound} />
@@ -31,7 +38,7 @@ function Actors() {
                               </div>
                             </div>
                 })}
-            </HorizontalScroll></div>
+            </Slider></div>
         }
     </div>
   )

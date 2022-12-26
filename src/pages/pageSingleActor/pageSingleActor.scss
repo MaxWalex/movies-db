@@ -19,6 +19,7 @@
 }
 
 .single_actor-top_right {
+    width: 100%;
     margin-left: 60px;
 
     h1 {
@@ -130,6 +131,13 @@
     height: 300px;
     .famous_block {
         height: 100%;
+        max-width: 800px;
+        width: 100%;
+        .slick-dots {
+            button::before {
+                color: #F2E35B
+            }
+        }
     }
     .pop_film {
         position: relative;
