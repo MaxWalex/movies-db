@@ -17,13 +17,13 @@ function PageSingleActorTv() {
   return (
     <>
         {singlePageActorTvLoadingStatus !== 'fulfilled' ? <Loader /> : <div className='famous_block'>
-          {tv.cast.map(item => {
+          {tv.length !== 0 && tv.cast.length !== 0 ? tv.cast.map(item => {
             return <div className='actor_fam-item' key={item.original_name + item.character}>
               <div className='year'>{item.first_air_date ? item.first_air_date.split('-')[0] : '-'}</div>
               <Link to={`/tv/${item.id}`}>{item.original_name}</Link>
               {item.character && <div className='role'>в роли <span>{item.character}</span></div>}
             </div>
-          })}  
+          }) : 'Ранее не снимался в сериалах'}
         </div>}
     </>
   )

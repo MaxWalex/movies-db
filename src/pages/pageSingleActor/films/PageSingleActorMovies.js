@@ -19,13 +19,13 @@ function PageSingleActorMovies() {
   return (
     <>
         {singlePageActorMoviesLoadingStatus !== 'fulfilled' ? <Loader /> : <div className='famous_block'>
-          {movies.cast.map(item => {
+          {movies.length !== 0 && movies.cast.length !== 0 ? movies.cast.map(item => {
             return <div className='actor_fam-item' key={item.original_title + item.character}>
               <div className='year'>{item.release_date ? item.release_date.split('-')[0] : '-'}</div>
               <Link to={`/movie/${item.id}`}>{item.original_title}</Link>
               {item.character && <div className='role'>в роли <span>{item.character}</span></div>}
             </div>
-          })}  
+          }) : 'Ранее не снимался в фильмах'} 
         </div>}
     </>
   )
