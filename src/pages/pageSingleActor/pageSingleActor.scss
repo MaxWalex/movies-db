@@ -1,0 +1,173 @@
+.single_actor {
+    position: relative;
+    padding-top: 60px;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.single_actor-top {
+    display: flex;
+    align-items: flex-start;
+    background-color: rgba(41, 41, 41, 0.5);
+    padding: 40px;
+    border-radius: 20px;
+}
+.single_actor-top_left img {
+    width: 380px;
+}
+
+.single_actor-top_right {
+    margin-left: 60px;
+
+    h1 {
+        color: #F2E35B;
+        margin-bottom: 20px;
+    }
+    h2 {
+        margin-right: 10px;
+        font-size: 17px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .actor_info-item {
+        display: flex;
+        align-items: flex-start;
+        & + .actor_info-item {
+            margin-top: 20px;
+        }
+        &.biography p {
+            height: 200px;
+            overflow-y: scroll;
+            &::-webkit-scrollbar {
+                width: 7px;
+            }
+            &::-webkit-scrollbar-thumb {
+                background-color: #F2E35B;
+                border-radius: 10px;
+            }
+        }
+    }
+}
+
+.actor_famouse {
+    & > h2 {
+        text-align: center;
+        margin: 40px 0;
+    }
+    h2 {
+       text-align: center;
+    }
+}
+.actor_famouse-wrapp {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.actor_famouse-block {
+    width: 49%;
+    background-color: rgba(41, 41, 41, 0.5);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.actor_fam-item {
+    display: flex;
+    align-items: flex-start;
+    transition: 0.2s;
+    .year {
+        min-width: 70px;
+        position: relative;
+        &::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            border: 1px solid #F2E35B;
+            position: absolute;
+            right: 12px;
+            top: 5px;
+        }
+    }
+    a {
+        font-weight: bold;
+    }
+    &:hover {
+        transform: scale(1.1);
+        a {
+            color: #F2E35B;
+        }
+        .year {
+            &::after {
+                content: '';
+                width: 3px;
+                height: 3px;
+                border-radius: 50%;
+                background-color: #F2E35B;
+                position: absolute;
+                right: 15px;
+                top: 8px;
+            }
+        }   
+    }
+    .role {
+        margin-left: 8px;
+        span {
+            font-weight: bold;
+        }
+    }
+    & + .actor_fam-item {
+        margin-top: 10px;
+    }
+}
+.slava h2 {
+    margin: 20px 0;
+}
+.pop_films {
+    width: 100%;
+    height: 300px;
+    .famous_block {
+        height: 100%;
+    }
+    .pop_film {
+        position: relative;
+        border-radius: 20px;
+        transition: 0.2s;
+        cursor: pointer;
+        img {
+            width: 150px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+        & + .pop_film {
+            margin-left: 15px;
+        }
+        .card_play {
+            opacity: 0;
+            position: absolute;
+            width: 150px;
+            height: 250px;   
+            top: 0;
+            left: 0;
+            border-radius: 15px;
+            background-color: rgba(0, 0, 0, 0.5);
+            transition: 0.4s;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            svg {
+                width: 40px;
+                height: 40px;
+            }
+        }
+        &:hover {
+            .card_play {
+                opacity: 1;
+            }
+        }
+    }
+}

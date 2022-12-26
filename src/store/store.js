@@ -9,6 +9,7 @@ import search from '../pages/pageSearch/pageSearchSlice';
 import categorySort from '../pages/pageCategorySort/pageCategorySortSlice';
 import singlePageComment from '../pages/pageSingle/comments/pageSingleCommentsSlice';
 import similarSlice from '../pages/pageSingle/similarFilms/PageSingleSimilarFilmsSlice';
+import singlePageActor from '../pages/pageSingleActor/PageSingleActorSlice';
 
 const store = configureStore({
     reducer: {
@@ -16,11 +17,12 @@ const store = configureStore({
         user,
         popFilms,
         singlePage,
-        category,
-        search,
-        categorySort,
         singlePageComment,
-        similarSlice
+        similarSlice,
+        singlePageActor,
+        category,
+        categorySort,
+        search,
     },
     devTools: process.env.NODE_ENV !== 'production'
 })
