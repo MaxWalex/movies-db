@@ -23,9 +23,15 @@ function PageSingleActorCombined() {
     }, [])
 
     const settings = {
+      arrows: false,
+      dots: true,
       speed: 500,
       slidesToShow: 5,
-      slidesToScroll: 1
+      slidesToScroll: 1,
+      adaptiveHeight: true,
+      autoplay: true,
+      infinite: false,
+      swipeToSlide: true
     };
 
   return (

@@ -21,9 +21,14 @@ function Actors() {
   const child = { width: `100px`, height: `100px`}
 
   const settings = {
+    arrows: false,
+    dots: true,
     speed: 500,
     slidesToShow: 7,
-    slidesToScroll: 5
+    slidesToScroll: 5,
+    infinite: false,
+    autoplay: true,
+    swipeToSlide: true
   };
 
   return (

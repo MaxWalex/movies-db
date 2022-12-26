@@ -135,9 +135,12 @@
         width: 100%;
         .slick-dots {
             button::before {
-                color: #F2E35B
+                color: #F2E35B;
             }
         }
+    }
+    .slick-cloned {
+        display: none !important;
     }
     .pop_film {
         position: relative;
