@@ -19,7 +19,7 @@ function PageCategorySort() {
 
   useEffect(() => {
     dispatch(genreSortFetch({type, param: choosenGeners.id, number}))
-  }, [])
+  }, [type, number])
 
   const arrayOfType = [{
     value: 'movie',
@@ -38,7 +38,6 @@ function PageCategorySort() {
   const handleClickPagination = (pagPage) => {
     dispatch(genreSortFetch({type, param: choosenGeners.id, number: pagPage}))
   }
-
 
   const content = categorySortLoadingStatus !== 'fulfilled' ? <Loader /> : genreSort.results.length !== 0 ? <>
             {

@@ -42,3 +42,44 @@
 }
 
 
+@media (max-width: 1120px) {
+    .popular_content {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+} 
+
+@media (max-width: 900px) {
+    .popular_content {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+} 
+
+@media (max-width: 630px) {
+    .popular_content {
+        grid-template-columns: 1fr 1fr;
+    }
+} 
+
+@media (max-width: 600px) {
+    .popular h2 {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 500px) {
+    .popular_content img {
+        height: 300px;
+    }
+}
+
+@media (max-width: 400px) {
+    .popular_content {
+        grid-template-columns: 1fr;
+    }
+    .popular_content img {
+        height: auto;
+    }
+}
+
+
+

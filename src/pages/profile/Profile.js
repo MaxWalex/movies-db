@@ -102,7 +102,7 @@ function Profile() {
                   }}
                   resetForm
                 >
-                  <Form className='profile_form'>
+                  {/* <Form className='profile_form'>
                     <p>Изменить пароль:</p>
                     <div className='profile_form-wrap'>
                       <div>
@@ -111,7 +111,7 @@ function Profile() {
                       </div>
                       <button type='submit'>Обновить</button>
                     </div>
-                  </Form>
+                  </Form> */}
                 </Formik>
                 <button onClick={e => logOut(e)}>Выйти из аккаунта</button>
               </div>

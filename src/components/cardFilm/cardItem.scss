@@ -95,17 +95,8 @@
 }
 
 
-// .card_anim-enter {
-//     opacity: 0;
-// }
-// .card_anim-enter-active {
-//     opacity: 1;
-//     transition: opacity 10000ms;
-// }
-// .card_anim-exit {
-//     opacity: 1;
-// }
-// .card_anim-exit-active {
-//     opacity: 0;
-//     transition: opacity 10000ms;
-// }
+@media (max-width: 500px) {
+    .card .card_play {
+        height: 300px;
+    }
+}

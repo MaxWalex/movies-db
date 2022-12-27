@@ -2,7 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 // import {useHttp} from '../../hooks/hook.http';
 
 const initialState = {
-    showSearch: false
+    showSearch: false,
+    showMobileMenu: false
 }
 
 const mainSlice = createSlice({
@@ -11,6 +12,9 @@ const mainSlice = createSlice({
     reducers: {
         toggleSearch: (state, action) => {
             state.showSearch = !action.payload
+        },
+        toggleMobileMenu: (state, action) => {
+            state.showMobileMenu = !action.payload
         }
     }
 })
@@ -19,4 +23,4 @@ const {actions, reducer} = mainSlice;
 
 export default reducer;
 
-export const {toggleSearch} = actions;
+export const {toggleSearch, toggleMobileMenu} = actions;

@@ -3,7 +3,7 @@ import { Link, useNavigate, useHref } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleSearch } from '../../reduxSlice/main';
 import { useAuth } from '../../hooks/useAuth';
-import userIMG from '../../images/user-svgrepo-com.svg';
+import Burger from './Burger';
 
 import SearchButton from './SearchButton';
 import SearchBlock from './SearchBlock';
@@ -35,7 +35,7 @@ function Header() {
 
     const href = useHref()
     const dispatch = useDispatch()
-    const { showSearch } = useSelector(state => state.main)
+    const { showSearch, showMobileMenu } = useSelector(state => state.main)
 
     const navigate = useNavigate()
 
@@ -55,14 +55,15 @@ function Header() {
         <div className='container'>
             <h1 className='logo'><Link to="/">Movies<span>DB</span></Link></h1>
 
-            <Menu />
-
             <SearchBlock clazz={clazz} handleSearch={handleSearch} setText={setText} text={text} />
+
+            <Menu />
 
             <div className='header_right'>
                 <SearchButton showSearch={showSearch} dispatch={dispatch} toggleSearch={toggleSearch} />
-                {loggedIn ?  <Link to="/profile"><SvgUser />Профиль</Link> :
-                    <Link to="/login"><SvgUser />Войти</Link>
+                <Burger />
+                {loggedIn ?  <Link to="/profile"><SvgUser /><span>Профиль</span></Link> :
+                    <Link to="/login"><SvgUser /><span>Войти</span></Link>
                 }
             </div>
         </div>

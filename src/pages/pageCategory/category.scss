@@ -20,6 +20,27 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-gap: 20px;
+        &-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            .goBack {
+                cursor: pointer;
+                padding: 10px 20px;
+                color: #000;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #F2E35B;
+                border-radius: 10px;
+                transition: 0.4s;
+                &:hover {
+                    background: #baaf4a;
+                }
+            }
+        }
     }
     .card + .card {
         margin-left: 0 !important;
@@ -41,12 +62,14 @@
             height: 50px;
         }
     }
+    &_wrap {
+        width: 100%;
+    }
 }
 
 .category_content-notfound {
-    color: #000;
+    color: #fff;
     font-size: 20px;
-    text-align: center;
     font-weight: bold;
     grid-column-start: 1;
     grid-column-end: 3;

@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo, useCallback } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { categoryFetch, categoryGenresFetch, categorySortFetch } from './pageCategorySlice';
 
@@ -13,6 +13,7 @@ import './category.scss';
 import imgBg2 from '../../images/cat-bg2.jpg';
 
 function PageCategory() {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const {category, categoryLoadingStatus } = useSelector(state => state.category)
   const { type, param, number } = useParams()
@@ -24,8 +25,15 @@ function PageCategory() {
 
   useEffect(() => {
     dispatch(categoryFetch({type, param, number}))
-    dispatch(categoryGenresFetch(type))
   }, [type, param])
+
+  useEffect(() => {
+    dispatch(categoryGenresFetch(type))
+  }, [type])
+
+  useEffect(() => {
+    dispatch(categorySortFetch({type, param: chooseGenres, number, year, sort}))
+  }, [number])
 
   useMemo(() => {
     setSort('popularity.desc')
@@ -64,25 +72,30 @@ function PageCategory() {
     />
 
     {categoryLoadingStatus !== 'fulfilled' ? <Loader /> : 
-      <div className="category_content">
-          
-        {category.results.length !== 0 ? category.results.map(film => {
-          return <CardItem key={film.id} film={film} type={type} />
-        }) : 
-          <p className="category_content-notfound">По вашему запросу ничего не найдено</p>
-        }
+      <div className="category_wrap">
+        <div className="category_content-top">
+          <h1>{type === 'movie' ? "Фильмы" : 'Сериалы'}</h1>
+          <div className="goBack" onClick={() => navigate(-1)}>Назад</div>
+        </div>
+        <div className="category_content">
+          {category.results.length !== 0 ? category.results.map(film => {
+            return <CardItem key={film.id} film={film} type={type} />
+          }) : 
+            <p className="category_content-notfound">По вашему запросу ничего не найдено</p>
+          }
+        </div>
       </div>
     }
   </>
 
-    const handleClickPagination = (pagPage) => {
+  const handleClickPagination = (pagPage) => {
 
-      if (isSort) {
-        dispatch(categorySortFetch({type, param: chooseGenres, number: pagPage, year, sort}))
-      } else {
-        dispatch(categoryFetch({type, param, number: pagPage}))
-      }
+    if (isSort) {
+      dispatch(categorySortFetch({type, param: chooseGenres, number: pagPage, year, sort}))
+    } else {
+      dispatch(categoryFetch({type, param, number: pagPage}))
     }
+  }
 
   return (
     <section className="category" style={{
@@ -95,9 +108,9 @@ function PageCategory() {
 
       <PaginationComponent
         status={categoryLoadingStatus}
+        handleClickPagination={handleClickPagination}
         data={category}
         pageRouter={+number}
-        handleClickPagination={handleClickPagination}
         pathName={`/category/${type}/${param}`}
       />
       
