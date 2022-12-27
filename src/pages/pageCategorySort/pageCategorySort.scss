@@ -37,3 +37,52 @@
         }
     }
 }
+
+@media (max-width: 1150px) {
+    .category_sort-inner {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+@media (max-width: 850px) {
+    .category_sort-inner {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media (max-width: 650px) {
+    .category_sort-inner {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+    .category_sort h2 {
+        font-size: 20px;
+    }
+    .category_sort-inner {
+        .card img {
+            height: 300px;
+        }
+        .card_play {
+            height: 300px;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .category_sort-inner {
+        .card {
+            max-width: 100%;
+            h3 {
+                font-size: 16px;
+            }
+        }
+        .card img {
+            height: 250px;
+        }
+        .card_play {
+            height: 250px;
+        }
+    }
+}

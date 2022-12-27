@@ -46,3 +46,29 @@
         }
     }
 }
+
+
+@media (max-width: 500px) {
+    .auth {
+        max-width: 100%;
+    }
+    .auth form {
+        margin-top: 70px;
+    }
+    .auth form h1 {
+        font-size: 30px;
+    }
+    .auth form button,
+    .auth form input + input {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 400px) {
+    .auth form {
+        margin-top: 70px;
+    }
+    .register p, .login p {
+        font-size: 14px;
+    }
+}

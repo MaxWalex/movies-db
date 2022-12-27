@@ -185,6 +185,12 @@ header {
     nav ul li + li {
         margin-left: 10px;
     }
+    .logo {
+        font-size: 30px;
+    }
+    header {
+        padding: 0 20px !important;
+    }
 }
 
 @media (max-width: 769px) {
@@ -250,5 +256,20 @@ header {
     .header_right a span {
         display: none;
     }
+    header .container {
+        padding: 0;
+    }
+}
 
+@media (max-width: 400px) {
+    header {
+        padding: 0 15px!important;
+    }
+    .header_right a,
+    .burger {
+        margin-left: 15px;
+    }
+    .header_right a svg {
+        margin-right: 0;
+    }
 }

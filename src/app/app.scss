@@ -43,12 +43,10 @@ h1 span {
     margin: 0 auto;
 }
 
-@media (max-width: 900px) {
-    .logo {
-        font-size: 30px;
+@media (max-width: 1340px) {
+    .container {
+        padding: 0 15px;
     }
-    header {
-        padding: 0 20px;
-    }
-} 
+}
+
 

@@ -94,3 +94,69 @@
         
     }
 }
+
+@media (max-width: 1160px) {
+    .profile_fav-films_list {
+        .card {
+            img {
+                height: 300px;
+            }
+            .card_play {
+                height: 300px;
+            }
+        }
+    }
+}
+
+@media (max-width: 1060px) {
+    .profile_fav-films_list {
+        .card {
+            img {
+                height: 250px;
+            }
+            .card_play {
+                height: 250px;
+            }
+        }
+    }
+}
+
+@media (max-width: 950px) {
+    .profile_fav-films {
+        margin-left: 0;
+        margin-top: 40px;
+        max-width: 100%;
+    }
+    .profile_inner-content {
+        flex-direction: column;
+    }
+    .profile_fav-films_list .card .card_play,
+    .profile_fav-films_list .card img {
+        height: auto;
+    }
+}
+
+@media (max-width: 550px) {
+    .profile_fav-films_list {
+        grid-template-columns: 1fr 1fr;
+    }
+    .profile {
+        padding: 40px 0;
+        h1 {
+            font-size: 30px;
+        }
+    }
+    .profile_info p {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile_fav-films_top {
+        flex-direction: column;
+        align-items: flex-start;
+        button {
+            margin-top: 20px;
+        }
+    }
+}

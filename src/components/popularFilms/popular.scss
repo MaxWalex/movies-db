@@ -74,10 +74,18 @@
 
 @media (max-width: 400px) {
     .popular_content {
-        grid-template-columns: 1fr;
-    }
-    .popular_content img {
-        height: auto;
+        .card {
+            max-width: 100%;
+            h3 {
+                font-size: 16px;
+            }
+        }
+        .card img {
+            height: 250px;
+        }
+        .card_play {
+            height: 250px;
+        }
     }
 }
 
