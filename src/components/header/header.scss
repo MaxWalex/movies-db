@@ -240,8 +240,15 @@ header {
     }
 }
 
+@media (max-width: 700px) {
+    header .nav_mobile {
+        width: 210px;
+    }
+}
+
 @media (max-width: 600px) {
     .header_right a span {
         display: none;
     }
+
 }
