@@ -24,8 +24,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 20px;
-            .goBack {
+            margin-bottom: 20px;            
+            .category_btn {
                 cursor: pointer;
                 padding: 10px 20px;
                 color: #000;
@@ -39,6 +39,12 @@
                 &:hover {
                     background: #baaf4a;
                 }
+                & + .category_btn {
+                    margin-left: 10px;
+                }
+            }
+            .category_filter {
+                display: none;
             }
         }
     }
@@ -163,6 +169,10 @@
         }
     }
 }
+.category_content-top_btns {
+    display: flex;
+    align-items: center;
+}
 .aside_wrap-item_year {
     display: flex;
     align-items: center;
@@ -192,6 +202,43 @@
     input + input {
         font-size: 16px;
         width: 22%;
+    }
+}
+
+@media (max-width: 1180px) {
+    .category_content {
+        .card img {
+            height: 300px;
+        }
+        .card_play {
+            height: 300px;
+        }
+    }
+}
+@media (max-width: 1050px) {
+    .category_content {
+        grid-template-columns: 1fr 1fr 1fr;
+        .card img {
+            height: 340px;
+        }
+        .card_play {
+            height: 340px;
+        }
+    }
+}
+
+@media (max-width: 950px) {
+    .category_content-top .category_filter {
+        display: block;
+    }
+    .category_content {
+        grid-template-columns: 1fr 1fr;
+        .card img {
+            height: 380px;
+        }
+        .card_play {
+            height: 380px;
+        }
     }
 }
 

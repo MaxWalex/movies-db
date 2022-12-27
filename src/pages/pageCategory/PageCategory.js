@@ -75,7 +75,10 @@ function PageCategory() {
       <div className="category_wrap">
         <div className="category_content-top">
           <h1>{type === 'movie' ? "Фильмы" : 'Сериалы'}</h1>
-          <div className="goBack" onClick={() => navigate(-1)}>Назад</div>
+          <div className="category_content-top_btns">
+            <div className="category_btn category_filter">Фильтр</div>
+            <div className="category_btn" onClick={() => navigate(-1)}>Назад</div>
+          </div>
         </div>
         <div className="category_content">
           {category.results.length !== 0 ? category.results.map(film => {
