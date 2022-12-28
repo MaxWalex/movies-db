@@ -29,6 +29,7 @@ function Actors() {
     slidesToScroll: 5,
     infinite: false,
     autoplay: true,
+    adaptiveHeight: true,
     swipeToSlide: true,
     responsive: [
       {
@@ -95,7 +96,7 @@ function Actors() {
         breakpoint: 420,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
           arrows: false,
           dots: false,
           infinite: true,
