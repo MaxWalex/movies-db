@@ -75,18 +75,21 @@ function PageSingleTopLeft() {
 
   return (
     <div className='single_top-left'>
-        <img src={singlePage.poster_path ? `https://image.tmdb.org/t/p/w500${singlePage.poster_path}` : imgNotFound } />
+        <div className='single_top-left_wrap'>
+            <img src={singlePage.poster_path ? `https://image.tmdb.org/t/p/w500${singlePage.poster_path}` : imgNotFound } />
 
-        {loggedIn && <svg onClick={() => handleFavourite()} className='fav' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48px" height="48px"><path d="M 4 2 L 4 22 L 12 19 L 20 22 L 20 2 L 6 2 L 4 2 z" style={{fill: "#f2e35b"}}/></svg>}
+            {loggedIn && <svg onClick={() => handleFavourite()} className='fav' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48px" height="48px"><path d="M 4 2 L 4 22 L 12 19 L 20 22 L 20 2 L 6 2 L 4 2 z" style={{fill: "#f2e35b"}}/></svg>}
 
-        {singlePage.vote_average !== 0 && <ProgressBar
-            progress={singlePage.vote_average}
-            steps={10}
-            radius={100}
-            className='progress_bar'
-        >
-            <div className='vote'>{parseFloat(singlePage.vote_average).toFixed(1)}</div>
-        </ProgressBar>}
+            {singlePage.vote_average !== 0 && <ProgressBar
+                progress={singlePage.vote_average}
+                steps={10}
+                radius={100}
+                className='progress_bar'
+            >
+                <div className='vote'>{parseFloat(singlePage.vote_average).toFixed(1)}</div>
+            </ProgressBar>}
+        </div>
+        
     </div>
   )
 }

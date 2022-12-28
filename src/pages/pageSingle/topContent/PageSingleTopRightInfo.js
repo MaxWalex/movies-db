@@ -39,7 +39,9 @@ function PageSingleTopRightInfo() {
 
             {singlePage.overview.length !== 0 && <div className='description single_top-item'>
                 <span>Описание:</span>
-                {singlePage.overview}
+                <p>
+                    {singlePage.overview}
+                </p>
             </div>}
     </>
   )

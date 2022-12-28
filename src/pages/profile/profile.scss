@@ -132,10 +132,15 @@
     }
     .profile_fav-films_list .card .card_play,
     .profile_fav-films_list .card img {
-        height: auto;
+        height: 340px;
     }
 }
-
+@media (max-width: 670px) {
+    .profile_fav-films_list .card .card_play,
+    .profile_fav-films_list .card img {
+        height: 290px;
+    }
+}
 @media (max-width: 550px) {
     .profile_fav-films_list {
         grid-template-columns: 1fr 1fr;
@@ -149,6 +154,10 @@
     .profile_info p {
         font-size: 24px;
     }
+    .profile_fav-films_list .card .card_play,
+    .profile_fav-films_list .card img {
+        height: 320px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -158,5 +167,9 @@
         button {
             margin-top: 20px;
         }
+    }
+    .profile_fav-films_list .card .card_play,
+    .profile_fav-films_list .card img {
+        height: 250px;
     }
 }
