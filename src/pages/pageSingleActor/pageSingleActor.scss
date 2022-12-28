@@ -198,3 +198,85 @@
         }
     }
 }
+
+@media (max-width: 1370px) {
+    .slava {
+        width: 100%;
+    }
+    .pop_films .famous_block {
+        max-width: 700px;
+    }
+}
+
+@media (max-width: 1250px) {
+    .slava {
+        width: 100%;
+    }
+    .pop_films .famous_block {
+        max-width: 700px;
+    }
+    .pop_films .famous_block {
+        max-width: 650px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .pop_films .famous_block {
+        max-width: 480px;
+    }
+    .single_actor-top_right {
+        margin-left: 30px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .actor_famouse-block {
+        width: 100%;
+        &:first-child {
+            margin-top: 20px;
+        }
+    }
+    .actor_famouse-wrapp {
+        flex-direction: column-reverse;
+    }
+    .single_actor-top {
+        flex-direction: column;
+        padding: 20px;
+    }
+    .single_actor-top_right {
+        margin-left: 0;
+        margin-top: 20px;
+    }
+    .pop_films .famous_block {
+        max-width: 800px;
+    }
+}
+
+@media (max-width: 730px) {
+    .single_actor-top_left {
+        width: 100%;
+        text-align: center;
+    }
+    .pop_films .famous_block {
+        max-width: 480px;
+    }
+}
+
+@media (max-width: 550px) {
+    .pop_films .famous_block {
+        max-width: 330px;
+        margin: 0 auto;
+    }
+    .actor_info-item {
+        flex-direction: column;
+        p {
+            margin-top: 10px;
+        }
+    }
+}
+
+@media (max-width: 450px) {
+    .single_actor-top_left img {
+        width: 100%;
+    }
+}

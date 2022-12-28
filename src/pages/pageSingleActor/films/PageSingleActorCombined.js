@@ -23,6 +23,7 @@ function PageSingleActorCombined() {
     }, [])
 
     const settings = {
+      className: "slider variable-width",
       arrows: false,
       dots: true,
       speed: 500,
@@ -31,7 +32,66 @@ function PageSingleActorCombined() {
       adaptiveHeight: true,
       autoplay: true,
       infinite: false,
-      swipeToSlide: true
+      swipeToSlide: true,
+      autoplay: true,
+      responsive: [
+        {
+          breakpoint: 1340,
+          settings: {
+            slidesToShow: 4
+          }
+        },
+        {
+          breakpoint: 1200,
+          settings: {
+            slidesToShow: 3,
+            arrows: true,
+            dots: false,
+          }
+        },
+        {
+          breakpoint: 970,
+          settings: {
+            slidesToShow: 5,
+            arrows: true,
+            dots: false,
+          }
+        },
+        {
+          breakpoint: 870,
+          settings: {
+            slidesToShow: 4,
+            arrows: true,
+            dots: false,
+          }
+        },
+        {
+          breakpoint: 730,
+          settings: {
+            slidesToShow: 3,
+            arrows: true,
+            dots: false,
+          }
+        },
+        {
+          breakpoint: 550,
+          settings: {
+            slidesToShow: 2,
+            arrows: true,
+            dots: false,
+          }
+        },
+        {
+          breakpoint: 450,
+          settings: {
+            slidesToShow: 1,
+            centerMode: true,
+            arrows: false,
+            dots: false,
+            variableWidth: true,
+          }
+        }
+      ]
     };
 
   return (
