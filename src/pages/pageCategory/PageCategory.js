@@ -1,7 +1,7 @@
-import { useEffect, useState, useMemo, useCallback } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useEffect, useState, useMemo } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { categoryFetch, categoryGenresFetch, categorySortFetch } from './pageCategorySlice';
+import { categoryFetch, categoryGenresFetch, categorySortFetch, toggleAsideFilter } from './pageCategorySlice';
 
 import CardItem from "../../components/cardFilm/CardItem";
 import Loader from "../../components/loader/Loader";
@@ -47,6 +47,7 @@ function PageCategory() {
     setChooseGenres([])
     setYear('')
     setIsSort(false)
+    dispatch(toggleAsideFilter(false))
   }
 
   const handleSelect = (e, id, name) => {
@@ -73,13 +74,16 @@ function PageCategory() {
 
     {categoryLoadingStatus !== 'fulfilled' ? <Loader /> : 
       <div className="category_wrap">
+
         <div className="category_content-top">
           <h1>{type === 'movie' ? "Фильмы" : 'Сериалы'}</h1>
+
           <div className="category_content-top_btns">
             <div className="category_btn category_filter">Фильтр</div>
             <div className="category_btn" onClick={() => navigate(-1)}>Назад</div>
           </div>
         </div>
+
         <div className="category_content">
           {category.results.length !== 0 ? category.results.map(film => {
             return <CardItem key={film.id} film={film} type={type} />
@@ -92,7 +96,6 @@ function PageCategory() {
   </>
 
   const handleClickPagination = (pagPage) => {
-
     if (isSort) {
       dispatch(categorySortFetch({type, param: chooseGenres, number: pagPage, year, sort}))
     } else {
@@ -100,10 +103,18 @@ function PageCategory() {
     }
   }
 
+  const handleToggleShowAside = e => {
+    if (e.target.classList.contains('category_filter')) {
+      dispatch(toggleAsideFilter(true))
+    } else if (!e.target.closest('.aside') || e.target.closest('.close_aside')) {
+      dispatch(toggleAsideFilter(false))
+    }
+  }
+
   return (
     <section className="category" style={{
       backgroundImage: `url(${imgBg2})`
-    }}>
+    }} onClick={(e) => handleToggleShowAside(e)}>
       
       <div className="container" style={{justifyContent: categoryLoadingStatus !== 'fulfilled' ? 'center' : 'space-between'}}>
         {content}

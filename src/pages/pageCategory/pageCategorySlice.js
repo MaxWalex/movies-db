@@ -6,7 +6,8 @@ const initialState = {
     categorySortLoadingStatus: 'idle',
     categoryGenresLoadingStatus: 'idle',
     category: [],
-    genres: []
+    genres: [],
+    showAsideFilter: false
 }
 
 export const categoryFetch = createAsyncThunk(
@@ -47,6 +48,11 @@ export const categorySortFetch = createAsyncThunk(
 const categorySlice = createSlice({
     name: 'category',
     initialState,
+    reducers: {
+        toggleAsideFilter: (state, action) => {
+            state.showAsideFilter = action.payload
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(categoryFetch.pending, state => {
@@ -86,6 +92,8 @@ const categorySlice = createSlice({
     }
 })
 
-const {reducer} = categorySlice;
+const {actions, reducer} = categorySlice;
 
 export default reducer;
+
+export const { toggleAsideFilter } = actions;
