@@ -30,10 +30,8 @@ function PageSingleActorCombined() {
       slidesToShow: 5,
       slidesToScroll: 1,
       adaptiveHeight: true,
-      autoplay: true,
       infinite: false,
       swipeToSlide: true,
-      autoplay: true,
       responsive: [
         {
           breakpoint: 1340,
@@ -85,10 +83,10 @@ function PageSingleActorCombined() {
           breakpoint: 450,
           settings: {
             slidesToShow: 1,
-            centerMode: true,
+            // centerMode: true,
             arrows: false,
             dots: false,
-            variableWidth: true,
+            // variableWidth: true,
           }
         }
       ]

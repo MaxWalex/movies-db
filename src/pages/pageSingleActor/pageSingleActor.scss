@@ -279,4 +279,35 @@
     .single_actor-top_left img {
         width: 100%;
     }
+    .famous_block {
+        font-size: 14px;
+    }
+    .actor_famouse-block {
+        padding: 10px;
+    }
+    .actor_fam-item .year {
+        min-width: 60px;
+    }
+    .actor_fam-item {
+        flex-direction: column;
+        .role {
+            margin-left: 0;
+        }
+        .year {
+            color: #F2E35B;
+        }
+    }
+    .pop_films {
+        height: auto;
+    }
+    .pop_films .pop_film {
+        img {
+            width: 100%;
+            height: auto;
+        }
+        .card_play {
+            width: 100%;
+            height: auto;
+        }
+    }
 }
