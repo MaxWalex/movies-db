@@ -28,7 +28,7 @@ function Actors() {
     slidesToShow: 7,
     slidesToScroll: 5,
     infinite: false,
-    // autoplay: true,
+    autoplay: true,
     swipeToSlide: true,
     responsive: [
       {
@@ -69,6 +69,8 @@ function Actors() {
         settings: {
           slidesToShow: 5,
           slidesToScroll: 5,
+          arrows: false,
+            dots: false,
         }
       },
       {
@@ -76,6 +78,8 @@ function Actors() {
         settings: {
           slidesToShow: 4,
           slidesToScroll: 4,
+          arrows: false,
+            dots: false,
         }
       },
       {
@@ -83,6 +87,8 @@ function Actors() {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
+          arrows: false,
+            dots: false,
         }
       },
       {
@@ -90,6 +96,8 @@ function Actors() {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
+          arrows: false,
+            dots: false,
         }
       }
     ]
