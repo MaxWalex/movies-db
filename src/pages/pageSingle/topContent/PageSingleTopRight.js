@@ -70,7 +70,7 @@ function Actors() {
           slidesToShow: 5,
           slidesToScroll: 5,
           arrows: false,
-            dots: false,
+          dots: false,
         }
       },
       {
@@ -79,7 +79,7 @@ function Actors() {
           slidesToShow: 4,
           slidesToScroll: 4,
           arrows: false,
-            dots: false,
+          dots: false,
         }
       },
       {
@@ -88,7 +88,7 @@ function Actors() {
           slidesToShow: 3,
           slidesToScroll: 3,
           arrows: false,
-            dots: false,
+          dots: false,
         }
       },
       {
@@ -97,7 +97,8 @@ function Actors() {
           slidesToShow: 2,
           slidesToScroll: 2,
           arrows: false,
-            dots: false,
+          dots: false,
+          infinite: true,
         }
       }
     ]

@@ -83,10 +83,9 @@ function PageSingleActorCombined() {
           breakpoint: 450,
           settings: {
             slidesToShow: 1,
-            // centerMode: true,
             arrows: false,
             dots: false,
-            // variableWidth: true,
+            infinite: true,
           }
         }
       ]
