@@ -20,6 +20,7 @@ import { db } from '../../firebase/firebase';
 import imgNF from '../../images/imgNotFound.jpg';
 import './cardItem.scss';
 
+
 function CardItem({film, type = 'movie'}) {
     // const [disable, setDisable] = useState(false)
     const dispatch = useDispatch()
