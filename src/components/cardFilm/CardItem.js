@@ -21,7 +21,7 @@ import imgNF from '../../images/imgNotFound.jpg';
 import './cardItem.scss';
 
 function CardItem({film, type = 'movie'}) {
-    const [disable, setDisable] = useState(false)
+    // const [disable, setDisable] = useState(false)
     const dispatch = useDispatch()
     const { userID, favFilms, loggedIn } = useSelector(state => state.user)
 
@@ -89,11 +89,11 @@ function CardItem({film, type = 'movie'}) {
                     }
     
                     await addDoc(collection(db, "listings"), cardData)
-                        .then(() => setDisable(true))
-                        .finally(() => {
-                            console.log(1)
-                            setDisable(false)
-                        })
+                        // .then(() => setDisable(true))
+                        // .finally(() => {
+                        //     console.log(1)
+                        //     setDisable(false)
+                        // })
     
                     fetchUserListings()
     
@@ -111,7 +111,7 @@ function CardItem({film, type = 'movie'}) {
   return (
     <Flip left cascade>
     <div className='card'>
-        <LazyLoad>
+        <LazyLoad once offset={100} height={380}>
             <img src={img} />
         </LazyLoad>
 
