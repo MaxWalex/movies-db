@@ -1,12 +1,13 @@
 
 import { useState } from 'react';
 
+import LazyLoad from 'react-lazyload';
 import { Link } from 'react-router-dom';
-import ProgressBar from 'react-customizable-progressbar';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { setFavFilms } from '../../reduxSlice/userSlice';
 
+import ProgressBar from 'react-customizable-progressbar';
 import Flip from 'react-reveal/Flip';
 
 import {
@@ -110,7 +111,9 @@ function CardItem({film, type = 'movie'}) {
   return (
     <Flip left cascade>
     <div className='card'>
-        <img src={img} />
+        <LazyLoad>
+            <img src={img} />
+        </LazyLoad>
 
         {loggedIn && <svg onClick={() => handleFavourite()} className='fav' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48px" height="48px"><path d="M 4 2 L 4 22 L 12 19 L 20 22 L 20 2 L 6 2 L 4 2 z" style={{fill: "#f2e35b"}}/></svg>}
 
