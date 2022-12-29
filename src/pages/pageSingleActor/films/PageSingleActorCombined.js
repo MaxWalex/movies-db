@@ -32,6 +32,7 @@ function PageSingleActorCombined() {
       adaptiveHeight: true,
       infinite: false,
       swipeToSlide: true,
+      lazyLoad: true,
       responsive: [
         {
           breakpoint: 1340,

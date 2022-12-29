@@ -31,6 +31,7 @@ function Actors() {
     autoplay: true,
     adaptiveHeight: true,
     swipeToSlide: true,
+    lazyLoad: true,
     responsive: [
       {
         breakpoint: 1320,
