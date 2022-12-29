@@ -37,7 +37,7 @@ header {
     } 
 }
 
-nav {
+header nav {
     display: block;
     height: 100%;
     z-index: 99999;
@@ -150,7 +150,7 @@ nav {
 }
 
 @media (max-width: 900px) {
-    nav ul li + li {
+    header nav ul li + li {
         margin-left: 10px;
     }
     .logo {
@@ -193,10 +193,10 @@ nav {
     .burger {
         display: block;
     }
-    nav ul li.has_children a {
+    header nav ul li.has_children a {
         padding: 0;
     }
-    nav {
+    header nav {
         z-index: 30;
         width: 30%;
         position: fixed;
